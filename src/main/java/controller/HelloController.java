@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
-@RestController
+@Controller
 public class HelloController {
 
     private IMyService myService;

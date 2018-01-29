@@ -34,4 +34,5 @@ public class AppConfig implements WebMvcConfigurer{
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
 }
