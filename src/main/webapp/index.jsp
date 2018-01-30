@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <%--<link rel="stylesheet" href="resource/css/bootstrap.min.css">--%>
@@ -53,7 +54,7 @@
 <script src="resource/js/dynamic.js"></script>
 <script>
     var typingArea = $("#typingArea")[0];
-    createTypingText(typingArea, "Hello world! ", "Stocks around the world have staged one of the best-ever starts to a year, a synchronized rally that has only gained momentum following 2017's sharp gains.");
+    createTypingText(typingArea, "w3schools.com，", "是最受欢迎的前端技术教程网站，但是国内用户一直不能访问，并且国内的中文翻译版本十分陈旧。因此做了个镜像，希望英文好的同学直接去看原版教程吧！");
     debugger;
 
     var formHtml = $.ajax({url: "/login.html", async: false}).responseText;
@@ -70,9 +71,17 @@
             $(div).fadeIn();
             $(document).click(function(event) {
                 debugger;
-                if (jj === true) {
+                var x = event.clientX;
+                var y = event.clientY;
+                var l = div.offsetLeft;
+                var t = div.offsetTop;
+                var r = l + div.offsetWidth;
+                var b = t + div.offsetHeight;
+                if (jj === true && !(x > l && x < r && y > t && y < b)) {
                     $(div).fadeOut();
-                    document.removeEventListener("click");
+                    $(document).unbind("click");
+                    jj = null;
+                    return;
                 }
                 jj = true;
             });
