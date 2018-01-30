@@ -7,7 +7,7 @@ import service.IMyService;
 public class MyService implements IMyService {
     @Override
     public String hello() {
-        return "redirect:/chatroom.jsp";
+        return "forward:/login.html";
     }
 
 }

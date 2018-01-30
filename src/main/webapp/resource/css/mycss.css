@@ -1,0 +1,107 @@
+::selection {
+    background: #bdbfbe;
+}
+
+body {
+    /*background: url(/resource/img/background.svg) fixed;*/
+    background: url(https://helphero.co/assets/things_28f8b283dab69268d4d244b92eced6a1.svg) fixed;
+    padding-top: 50px;
+}
+
+button {
+    transition: all .30s ease;
+    -webkit-transition: all .30s ease;
+    color: #777777;
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: -3px 3px 1px rgba(0,0,0,.075);
+}
+
+.btn-default {
+    color: #777777;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-default:hover {
+    color: #333;
+    background-color: #a7a7a7;
+    border-color: #adadad;
+}
+
+.navbar-default .navbar-brand {
+    transition: all .15s ease;
+    -webkit-transition: all .15s ease;
+    color: #777777;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #ffffff;
+}
+
+
+
+.navbar-default {
+    background: -moz-linear-gradient(top, #8ed7ff 0%, #ffffff 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8ed7ff), color-stop(100%,#ffffff));
+    background: -webkit-linear-gradient(top, #8ed7ff 0%,#ffffff 100%);
+    background: -o-linear-gradient(top, #8ed7ff 0%,#ffffff 100%);
+    background: -ms-linear-gradient(top, #8ed7ff 0%,#ffffff 100%);
+    background: linear-gradient(to bottom, #8ed7ff 0%,#ffffff 100%);
+    border: hidden;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.jumbotron {
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,0);
+    height: 300px;
+}
+
+.cursor-fadeinout {
+    animation: cursor-fadeinout 1s infinite;
+    -webkit-animation: cursor-fadeinout 1s infinite;
+}
+
+.typing-h1 {
+    font-size: 30px;
+    color: #000000;
+}
+
+.free-blog {
+    position: absolute;
+    padding: 22px 16px 22px 16px;
+    border-radius: 4px;
+    border: 1px solid #adadad;
+    background-color: white;
+    box-shadow: -4px 4px 2px rgba(0,0,0,.075);
+}
+
+@keyframes cursor-fadeinout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 0.8; }
+}
