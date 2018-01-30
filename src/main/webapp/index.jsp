@@ -1,7 +1,8 @@
 <html>
 <head>
     <%--<link rel="stylesheet" href="resource/css/bootstrap.min.css">--%>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="resource/css/mycss.css">
 </head>
 <body>
@@ -46,14 +47,16 @@
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <%--<script src="resource/js/bootstrap.min.js"></script>--%>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 <script src="resource/js/dynamic.js"></script>
 <script>
     var typingArea = $("#typingArea")[0];
     createTypingText(typingArea, "Hello world! ", "Stocks around the world have staged one of the best-ever starts to a year, a synchronized rally that has only gained momentum following 2017's sharp gains.");
-debugger;
+    debugger;
 
-    var formHtml = $.ajax({url:"/login.html",async:false}).responseText;
+    var formHtml = $.ajax({url: "/login.html", async: false}).responseText;
     var div = document.createElement("div");
     div.style.right = "4%";
     div.style.top = "80px";
@@ -61,22 +64,22 @@ debugger;
     div.innerHTML = formHtml;
     div.style.display = "none";
     document.body.appendChild(div);
-    function openRegister(){
-        if(div.style.display === "none"){
+
+    function openRegister() {
+        if (div.style.display === "none") {
             $(div).fadeIn();
-            document.onclick = j;
+            $(document).click(function(event) {
+                debugger;
+                if (jj === true) {
+                    $(div).fadeOut();
+                    document.removeEventListener("click");
+                }
+                jj = true;
+            });
         }
         jj = false;
     }
-    function j(event) {
-        debugger;
-        if (jj === true){
 
-            $(div).fadeOut();
-            document.removeEventListener("click");
-        }
-        jj = true;
-    }
 
 </script>
 </html>
