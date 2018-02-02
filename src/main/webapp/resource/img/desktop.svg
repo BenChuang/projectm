@@ -1,0 +1,28 @@
+<svg class="bh l"
+     style="width:750px;height:480px;pointer-events:none;border-radius:3px;box-shadow:0 34px 50px 0 rgba(0, 0, 0, .3)">
+    <g>
+        <defs>
+            <filter id="addressbarGlow">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"></feGaussianBlur>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"></feMergeNode>
+                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+        <rect x="0" y="0" rx="4" ry="4" width="750" height="480" style="fill: white;stroke: rgb(182, 182, 182);stroke-width: 2px;"></rect>
+        <path d="M4 0 L746 0 Q750 0 750 4 L750 40 Q750 40 750 40 L0 40 Q0 40 0 40 L0 4 Q0 0 4 0 Z" fill="#d0d0d0"
+              style="height: 40px; stroke: rgb(173, 173, 173); stroke-width: 1;"></path>
+        <circle cx="17.142857142857142" cy="18.142857142857142" fill="#fc605c" stroke="#ef4b47" stroke-width="1"
+                r="5.714285714285714"></circle>
+        <circle cx="37.14285714285714" cy="18.142857142857142" fill="#fdbc40" stroke="#efaa2f" stroke-width="1"
+                r="5.714285714285714"></circle>
+        <circle cx="57.14285714285714" cy="18.142857142857142" fill="#34c749" stroke="#22b634" stroke-width="1"
+                r="5.714285714285714"></circle>
+        <rect rx="2" ry="2" x="112.5" y="6.666666666666667" width="525" fill="#419bf9"
+              style="height: 26.6667px; transition: all 200ms ease-out;"></rect>
+        <rect rx="2" ry="2" x="112.5" y="6.666666666666667" width="525" stroke-width="1" stroke="#adadad" fill="white"
+              style="height: 26.6667px; transition: all 200ms ease-out;"></rect>
+        <text dy="0.3em" x="119.16666666666667" y="20" style="font-size: 14px;">www.baidu.com</text>
+     </g>
+</svg>

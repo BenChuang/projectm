@@ -7,7 +7,7 @@ import service.IMyService;
 public class MyService implements IMyService {
     @Override
     public String hello() {
-        return "forward:/login.html";
+        return "forward:/register.html";
     }
 
 }

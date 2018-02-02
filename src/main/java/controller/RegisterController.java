@@ -10,6 +10,6 @@ public class RegisterController {
 
     @RequestMapping("/register")
     public String getRegisterControllerPage() {
-        return "forward:/login.html";
+        return "forward:/register.html";
     }
 }
