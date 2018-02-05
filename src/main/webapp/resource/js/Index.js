@@ -8,7 +8,7 @@ var Index = function(registerPanel){
 Index.prototype.openRegister = function() {
     if (this.registerPanel.style.display === "none") {
         if("string" === typeof this.registerPanel.innerHTML && this.registerPanel.innerHTML.length === 0){
-            this.registerPanel.innerHTML = $.ajax({url: "/register.html", async: false}).responseText;
+            this.registerPanel.innerHTML = commonUtil.syncLoad("/register.html");
         }
         $(this.registerPanel).fadeIn();
         $(document).click(eventUtil.newEventHendleFun(true, this.closeRegister, this));

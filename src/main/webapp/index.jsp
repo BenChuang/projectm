@@ -37,16 +37,16 @@
 </div>
 
 
-<div class="swiper-container swiper-container-out" style="position: absolute; width: 100%; top: 240px; ">
-    <div class="swiper-wrapper" style="margin-left: 28%; margin-bottom: 45px">
-        <div class="content">
-            <div id="desktop"></div>
+<div class="swiper-container swiper-container-out" style="position: absolute; width: 100%; height: 70%; top: 30%; ">
+    <div class="swiper-wrapper" style="margin-left: 20%; margin-bottom: 45px; width: 60%; height: 90%">
+        <div class="content" style="width: 100%; height: 100%">
+            <div id="desktop" style="width: 100%"></div>
             <div class="swiper-container swiper-container-looping"
-                 style="position: absolute;top: 40px;left: 1px;width: 748px;height: 439px;border-radius: 0px 0px 3px 3px;">
+                 style="position: absolute;top: 8%;left: 1px;width: calc(100% - 2px); width:-webkit-calc(100% - 2px); width:-moz-calc(100% - 2px);  height:calc(92% - 1px); height:-webkit-calc(92% - 1px); height:-moz-calc(92% - 1px); border-radius: 0px 0px 3px 3px;">
                 <div class="swiper-wrapper" style=" margin-bottom: 45px">
-                    <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 748px; height: 439px;"></div>
-                    <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 748px; height: 439px;"></div>
-                    <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 748px; height: 439px;"></div>
+                    <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 100%; height: 100%;"></div>
+                    <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 100%; height: 100%;"></div>
+                    <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 100%; height: 100%;"></div>
                 </div>
             </div>
         </div>
@@ -60,6 +60,7 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="resource/js/swiper-4.1.0.min.js"></script>
 <script src="resource/js/bootstrap.min.js"></script>
+<script src="resource/js/commonUti.js"></script>
 <script src="resource/js/dynamic.js"></script>
 <script src="resource/js/eventUtil.js"></script>
 <script src="resource/js/Index.js"></script>
@@ -87,6 +88,10 @@
         loop: true,
         autoplay: true
     });
+
+    if (document.body.scrollHeight > document.body.clientHeight) {
+        mySwiper2.mousewheel.disable();
+    }
 
     //出现滚动条则禁止小电脑画面的滚轮切换事件
     window.onresize = function () {
