@@ -42,7 +42,7 @@
         <div class="content" style="width: 100%; height: 100%">
             <div id="desktop" style="width: 100%"></div>
             <div class="swiper-container swiper-container-looping"
-                 style="position: absolute;top: 8%;left: 1px;width: calc(100% - 2px); width:-webkit-calc(100% - 2px); width:-moz-calc(100% - 2px);  height:calc(92% - 1px); height:-webkit-calc(92% - 1px); height:-moz-calc(92% - 1px); border-radius: 0px 0px 3px 3px;">
+                 style="position: absolute;top: 40px;left: 1px;width: calc(100% - 2px); width:-webkit-calc(100% - 2px); width:-moz-calc(100% - 2px);  height:calc(100% - 41px); height:-webkit-calc(100% - 41px); height:-moz-calc(100% - 41px); border-radius: 0px 0px 3px 3px;">
                 <div class="swiper-wrapper" style=" margin-bottom: 45px">
                     <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 100%; height: 100%;"></div>
                     <div class="swiper-slide"><img src="resource/img/p1.png" style="width: 100%; height: 100%;"></div>
