@@ -1,26 +1,25 @@
-<form>
+<form action="/register" method="post">
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+        <label for="companyName">Company Name</label>
+        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Company">
     </div>
     <div class="form-group">
-        <label for="exampleInputUsername1">Username</label>
-        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+        <label for="emailOrPhone">Email or Phone Number</label>
+        <input type="text" class="form-control" id="emailOrPhone" name="emailOrPhone" placeholder="Email or Phone Number">
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
     </div>
     <div class="form-group">
-        <label for="exampleInputFile">File input</label>
-        <input type="file" id="exampleInputFile">
-        <p class="help-block">Example block-level help text here.</p>
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox"> Check me out
+            <input type="checkbox" id="isRemember"> Remember me
         </label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default col-md-offset-4 col-md-4">Submit</button>
 </form>
 
