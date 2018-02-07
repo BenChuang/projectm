@@ -1,25 +1,24 @@
 package initializer;
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.lang.Nullable;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRegistration;
-
-public class MyWebApplicationInitializer implements WebApplicationInitializer {
+public class MyWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
-    public void onStartup(ServletContext servletCxt) {
-        // Load Spring web application configuration
-        AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
-        ac.register(AppConfig.class);
-        ac.refresh();
+    protected String[] getServletMappings() {
+        return new String[]{"/controller/*"};
+    }
 
-        // Create and register the DispatcherServlet
-        DispatcherServlet servlet = new DispatcherServlet(ac);
-        ServletRegistration.Dynamic registration = servletCxt.addServlet("app", servlet);
-        registration.setLoadOnStartup(1);
-        registration.addMapping("/controller/*");
+    @Nullable
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[]{RootConfig.class};
+    }
+
+    @Nullable
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[]{WebConfig.class};
     }
 }

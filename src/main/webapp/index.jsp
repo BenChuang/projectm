@@ -21,7 +21,7 @@
                     <input type="password" class="form-control" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-default"><b>SIGN IN &#10140</b></button>
-                <a id="btn_registen">or SIGN UP now!</a>
+                <a id="btn_register">or SIGN UP now!</a>
             </form>
         </div>
     </div>

@@ -7,13 +7,15 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import service.IMyService;
 import service.impl.MyService;
 
 @Configuration
-@ComponentScan({"service.impl", "controller"})
-public class AppConfig implements WebMvcConfigurer{
+@EnableWebMvc
+@ComponentScan({"controller"})
+public class WebConfig implements WebMvcConfigurer{
 
     @Bean
     public IMyService myService() {
@@ -28,7 +30,6 @@ public class AppConfig implements WebMvcConfigurer{
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
     }
-
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

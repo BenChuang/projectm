@@ -12,7 +12,6 @@ import service.IMyService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Component
 @Controller
 public class HelloController {
 

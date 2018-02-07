@@ -2,10 +2,10 @@
  * index.jsp
  * @constructor
  */
-var Index = function(){
+const Index = function () {
     this.registerPanel = $("#registerPanel")[0];
     this.typingArea = $("#typingArea")[0];
-    this.btnRegister = $("#btn_registen")[0];
+    this.btnRegister = $("#btn_register")[0];
     this.init();
 };
 
@@ -15,7 +15,7 @@ Index.prototype.init = function () {
     //注册按钮点击事件
     this.btnRegister.addEventListener("click", eventUtil.newEventHendleFun(false, this.openRegister, this));
     //读取小电脑图片
-    var desktop = commonUtil.syncLoad("/resource/img/desktop.svg");
+    const desktop = commonUtil.syncLoad("/resource/img/desktop.svg");
     $("#desktop").html(desktop);
     //小电脑及其画面的swiper对象初始化
     this.mySwiper1 = new Swiper('.swiper-container-out', {
@@ -43,7 +43,7 @@ Index.prototype.init = function () {
 /**
  * 打开注册面板
  */
-Index.prototype.openRegister = function() {
+Index.prototype.openRegister = function () {
     if (this.registerPanel && this.registerPanel.style.display === "none") {
         //第一次点击该按钮才读取注册面板的表格内容
         if("string" === typeof this.registerPanel.innerHTML && this.registerPanel.innerHTML.length === 0){
@@ -52,7 +52,7 @@ Index.prototype.openRegister = function() {
         $(this.registerPanel).fadeIn();
         this.EventNotFromOpenRegist = false;
         //新增在document对象上的点击事件用于关闭注册面板
-        $(document).click(eventUtil.newEventHendleFun(true, this.closeRegister, this, "2", "1"));
+        $(document).click(eventUtil.newEventHendleFun(true, this.closeRegister, this));
     }
 };
 
@@ -60,15 +60,15 @@ Index.prototype.openRegister = function() {
  * 关闭注册面板
  * @param event 传入的点击事件用于计算点击位置是否在注册面板外
  */
-Index.prototype.closeRegister = function (a, b, event) {
+Index.prototype.closeRegister = function (event) {
     //点击位置
-    var x = event.clientX;
-    var y = event.clientY;
+    const x = event.clientX;
+    const y = event.clientY;
     //注册面板的边界
-    var l = this.registerPanel.offsetLeft;
-    var t = this.registerPanel.offsetTop;
-    var r = l + this.registerPanel.offsetWidth;
-    var b = t + this.registerPanel.offsetHeight;
+    const l = this.registerPanel.offsetLeft;
+    const t = this.registerPanel.offsetTop;
+    const r = l + this.registerPanel.offsetWidth;
+    const b = t + this.registerPanel.offsetHeight;
     if (this.EventNotFromOpenRegist === true && !(x > l && x < r && y > t && y < b)) {
         $(this.registerPanel).fadeOut();
         $(document).unbind("click");

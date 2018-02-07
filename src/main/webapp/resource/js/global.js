@@ -93,7 +93,7 @@ const timeToken = (func, ...params) => {
 
 /**
  * 少于两个参数下将上一个函数返回值作为上一个函数参数运行函数链
- * @param funcs 第一个函数的参数
+ * @param funcs
  */
 const pipe = (...funcs) => param => funcs.reduce((ret, func) => func(ret), param);
 
@@ -116,9 +116,9 @@ const shuffleArr = (length, min, max) => Array.apply(null, new Array(length)).ma
 /**
  * 测试脚本Testing script
  */
-(() => {
+const test = () => {
     console.log(anagrams("abc"));// -> ["abc", "acb", "bac", "bca", "cab", "cba"]
     console.log(pipe(btoa, x => x.toUpperCase())("test"));// -> DGVZDA==
     console.log([..."abc"]);// -> ["a", "b", "c"]
     console.log(shuffleSortArr(shuffleArr(10, 1, 999)));
-})();
+};
