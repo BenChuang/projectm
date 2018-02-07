@@ -52,7 +52,7 @@ Index.prototype.openRegister = function() {
         $(this.registerPanel).fadeIn();
         this.EventNotFromOpenRegist = false;
         //新增在document对象上的点击事件用于关闭注册面板
-        $(document).click(eventUtil.newEventHendleFun(true, this.closeRegister, this));
+        $(document).click(eventUtil.newEventHendleFun(true, this.closeRegister, this, "2", "1"));
     }
 };
 
@@ -60,7 +60,7 @@ Index.prototype.openRegister = function() {
  * 关闭注册面板
  * @param event 传入的点击事件用于计算点击位置是否在注册面板外
  */
-Index.prototype.closeRegister = function (event) {
+Index.prototype.closeRegister = function (a, b, event) {
     //点击位置
     var x = event.clientX;
     var y = event.clientY;

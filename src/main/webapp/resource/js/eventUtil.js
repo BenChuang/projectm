@@ -7,19 +7,14 @@ var eventUtil = {
      * @param params []事件处理函数的参数列表
      * @returns {Function} needEvent为true时将event对象添加到params最后
      */
-    newEventHendleFun: function (needEvent, fn, context, params) {
+    newEventHendleFun: function (needEvent, fn, context, ...params) {
         if (needEvent)
             return function (event) {
-                params = params || [];
-                //判断最后一位是否为event对象，是则替换成当前event对象
-                if(params[params.length - 1] && params[params.length - 1].preventDefault && params[params.length - 1].target)
-                    params.pop();
-                params.push(event);
-                fn.apply(context, params);
+                fn.call(context, ...params, event);
             };
         else
             return function () {
-                fn.apply(context, params);
+                fn.call(context, ...params);
             }
     }
 };
