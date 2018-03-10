@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-default"><b>SIGN IN &#10140</b></button>
+                <button id="btn_login" typpe="submit" class="btn btn-default"><b>SIGN IN &#10140</b></button>
                 <a id="btn_register">or SIGN UP now!</a>
             </form>
         </div>
@@ -65,7 +65,6 @@
 <script src="/resource/js/Index.js"></script>
 
 <script>
-
     new Index();
 
 </script>

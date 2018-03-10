@@ -4,8 +4,7 @@ import entity.User;
 
 import java.lang.reflect.InvocationTargetException;
 
-public interface IRegisterService {
-    boolean isValid(User user) throws InvocationTargetException, IllegalAccessException;
+public interface IUserService {
 
     boolean isUserNotExist(User user);
 

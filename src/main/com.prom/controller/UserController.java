@@ -3,24 +3,25 @@ package controller;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import service.IRegisterService;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import service.IStateModule;
+import service.IUserService;
+import service.impl.StateModule;
 
 
 @Controller
-public class RegisterController {
+public class UserController {
 
     @Autowired
-    IRegisterService registerService;
+    private IUserService userService;
+    @Autowired
+    private IStateModule stateModule;
 
     @PostMapping("/register")
     public String regist(User user) {
-        registerService.addUser(user);
+        if (userService.addUser(user)){
+            stateModule.setCurUser(user);
+        }
         return "index";
     }
 }

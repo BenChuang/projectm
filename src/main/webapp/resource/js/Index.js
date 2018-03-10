@@ -6,6 +6,7 @@ const Index = function () {
     this.registerPanel = $("#registerPanel")[0];
     this.typingArea = $("#typingArea")[0];
     this.btnRegister = $("#btn_register")[0];
+    this.btnLogin = $("#btn_login")[0];
     this.init();
 };
 
@@ -14,6 +15,7 @@ Index.prototype.init = function () {
     createTypingText(this.typingArea, "Test test test, ", "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试，测试测试测试测试测试测试测试测试测试测试测试测。试测试测试测试测试测测试测试测试测试测试试测试测试测试测试测试测试！");
     //注册按钮点击事件
     this.btnRegister.addEventListener("click", eventUtil.newEventHendleFun(false, this.openRegister, this));
+    this.btnLogin.addEventListener("click", eventUtil.newEventHendleFun(false, this.clickListenerBtnLogin, this));
     //读取小电脑图片
     const desktop = commonUtil.syncLoad("/resource/img/desktop.svg");
     $("#desktop").html(desktop);
@@ -77,4 +79,9 @@ Index.prototype.closeRegister = function (event) {
     }
     //标记事件是否已经跳过由openRegister传过来的事件
     this.EventNotFromOpenRegist = true;
+};
+
+Index.prototype.clickListenerBtnLogin = function () {
+    // var ret = commonUtil.getSessionAttribute("scopedTarget.stateModule");
+    var ret = commonUtil.getState("curUser");
 };

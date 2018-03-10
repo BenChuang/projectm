@@ -8,12 +8,12 @@ import javax.persistence.*
  */
 @Entity
 @Table(name = "user")
-data class User constructor(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int? = 2){
-    constructor(id: Int, username: String, email: String, password: String): this(id){
-        this.username = username
-        this.email = email
-        this.password = password
-    }
+data class User constructor(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int?){
+//    constructor(id: Int, username: String, email: String, password: String): this(id){
+//        this.username = username
+//        this.email = email
+//        this.password = password
+//    }
     @Column var username: String = ""
     @Column var email: String = ""
     @Column var password: String = ""

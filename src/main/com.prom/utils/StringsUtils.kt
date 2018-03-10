@@ -17,11 +17,11 @@ object StringsUtils {
      * @param obj 用于检测的对象
      * @return 有任何一个getter为空(null or empty)则返回false，否则返回true
      */
-    fun checkGetterNotNullOrEmpty(obj: Any):Boolean{
+    fun checkGetterNotNullOrEmpty(obj: Any, vararg fields: String):Boolean{
         val methods = obj.javaClass.declaredMethods
         val methodStream = Arrays.stream(methods)
         return methodStream.noneMatch {
-            if (it.name.startsWith("get")) {
+            if (it.name.startsWith("get") && it.name.substring(3).toLowerCase() in fields) {
                 val result = it.invoke(obj)
                 if (isNullOrEmpty(result)){
                     return@noneMatch true
@@ -30,5 +30,6 @@ object StringsUtils {
             return@noneMatch false
         }
     }
+
 }
 
