@@ -10,9 +10,10 @@ const createTypingText = (elem, textFixed, textDynamic) => {
         textDynamic = "" + textDynamic;
         //创建展示文字所需的dom元素,最后加入到elem中
         // <span>
-        //      <h2 class="typing-h2">
+        //      <h1 ckass="typing">{ textFixed }</h1>
+        //      <h2 class="typing">
         //          <span>
-        //              textFixed + textDynamic
+        //              { textDynamic }
         //          </span>
         //          <span class="cursor-fadeinout">
         //              |
@@ -21,8 +22,12 @@ const createTypingText = (elem, textFixed, textDynamic) => {
         // </span>
         const span = document.createElement("SPAN");
         const h2 = document.createElement("H2");//文字大小h2
+        const h1 = document.createElement("H1");
+        h1.textContent = textFixed;
+        h1.className = "typing";
         const spanText = document.createElement("SPAN");
-        h2.className = "typing-h2";
+        h2.className = "typing";
+        span.appendChild(h1);
         span.appendChild(h2);
         const spanCursor = document.createElement("SPAN");
         spanCursor.innerHTML = "|";
@@ -49,7 +54,7 @@ const createTypingText = (elem, textFixed, textDynamic) => {
                 if (textIndex === textDynamicLength) {
                     clearInterval(interval);
                 }
-                spanText.textContent = textFixed + textDynamic.substring(0, textIndex);
+                spanText.textContent = textDynamic.substring(0, textIndex);
                 if ((frameIndex >= inter && frameIndex < inter + plusPart[0])
                     || (frameIndex >= inter + plusPart[0] + inter && frameIndex < inter + plusPart[0] + inter + plusPart[1])
                     || (frameIndex >= inter + plusPart[0] + inter + plusPart[1] + inter && frameIndex < inter + plusPart[0] + inter + plusPart[1] + inter + plusPart[2])

@@ -4,26 +4,22 @@
     <link rel="stylesheet" href="/resource/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resource/css/swiper-4.1.0.min.css">
     <link rel="stylesheet" href="/resource/css/mycss.css">
+    <title>TeamCo | 协作，助力企业和团队实现目标</title>
 </head>
 <body>
 <nav class="navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Brand</a>
+            <a class="navbar-brand" href="/">TeamCo | 协作，助力企业和团队实现目标</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email or Phone Number">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <button id="btn_login" typpe="submit" class="btn btn-default"><b>SIGN IN &#10140</b></button>
-                <a id="btn_register">or SIGN UP now!</a>
-            </form>
-        </div>
+            <div id="signing" class="navbar-form navbar-right">
+                <a id="btn_loginPanel">SIGN IN </a>
+                <span>or</span>
+                <a id="btn_register"> SIGN UP</a>
+            </div>
+          </div>
     </div>
 </nav>
 
@@ -53,6 +49,7 @@
 </div>
 
 <div id="registerPanel" class="col-lg-3 free-blog" style="right: 4%; top: 80px; display: none; z-index: 1"></div>
+<div id="loginPanel" class="col-lg-3 free-blog" style="right: 4%; top: 80px; display: none; z-index: 1"></div>
 
 </body>
 

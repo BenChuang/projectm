@@ -30,10 +30,11 @@ const commonUtil = {
             });
             if(ajax.status === 200)
                 return ajax.responseText;
-        }},
+        }
+    },
 
     /**
-     *
+     * 获取state中的状态值，若转台为对象则返回对象json字符串
      * @param key
      */
     getState: (key, callback) => {
@@ -49,5 +50,7 @@ const commonUtil = {
             if(ajax.status === 200)
                 return ajax.responseText;
         }
-    }
+    },
+
+
 };

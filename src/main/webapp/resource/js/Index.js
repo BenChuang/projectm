@@ -4,18 +4,27 @@
  */
 const Index = function () {
     this.registerPanel = $("#registerPanel")[0];
+    this.loginPanel = $("#loginPanel")[0];
     this.typingArea = $("#typingArea")[0];
     this.btnRegister = $("#btn_register")[0];
-    this.btnLogin = $("#btn_login")[0];
+    this.btnLoginPanel = $("#btn_loginPanel")[0];
+    this.signing = $("#signing")[0];
+    this.openingPanel = null;
     this.init();
 };
 
 Index.prototype.init = function () {
+    let isLogined = commonUtil.getState("logined");
+    //判断登录状态，替换loginForm
+    if(isLogined === true || isLogined === "true"){
+        let curUsername = commonUtil.getState("curUsername");
+        this.signing.innerHTML = "<div><span>Welcome, " + curUsername + ". </span><a href='/controller/teamco'>进入系统</a> or " + "<a href='/controller/logout'>注销</a>";
+    }
     //动态打字脚本
-    createTypingText(this.typingArea, "Test test test, ", "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试，测试测试测试测试测试测试测试测试测试测试测试测。试测试测试测试测试测测试测试测试测试测试试测试测试测试测试测试测试！");
+    createTypingText(this.typingArea, "协作，助力企业和团队实现目标", "协助团队进行高效工作以及快速响应变化");
     //注册按钮点击事件
-    this.btnRegister.addEventListener("click", eventUtil.newEventHendleFun(false, this.openRegister, this));
-    this.btnLogin.addEventListener("click", eventUtil.newEventHendleFun(false, this.clickListenerBtnLogin, this));
+    this.btnRegister.addEventListener("click", eventUtil.newEventHendleFun(false, this.openPanel, this, this.registerPanel));
+    this.btnLoginPanel.addEventListener("click", eventUtil.newEventHendleFun(false, this.openPanel, this, this.loginPanel));
     //读取小电脑图片
     const desktop = commonUtil.syncLoad("/resource/img/desktop.svg");
     $("#desktop").html(desktop);
@@ -43,45 +52,50 @@ Index.prototype.init = function () {
 };
 
 /**
- * 打开注册面板
+ * 打开面板
  */
-Index.prototype.openRegister = function () {
-    if (this.registerPanel && this.registerPanel.style.display === "none") {
-        //第一次点击该按钮才读取注册面板的表格内容
-        if("string" === typeof this.registerPanel.innerHTML && this.registerPanel.innerHTML.length === 0){
-            this.registerPanel.innerHTML = commonUtil.syncLoad("/register.html");
+Index.prototype.openPanel = function (panel) {
+    if(this.openingPanel){
+        this.openingPanel.style.display = "none";
+        $(document).unbind("click");
+        this.openingPanel = null;
+    }
+    if (panel && panel.style.display === "none") {
+        //第一次点击该按钮才读取面板的表格内容
+        if("string" === typeof panel.innerHTML && panel.innerHTML.length === 0){
+            let panelPageName = panel.id.substring(0, panel.id.indexOf("Panel"));
+            panel.innerHTML = commonUtil.syncLoad("/" + panelPageName + ".html");
         }
-        $(this.registerPanel).fadeIn();
+        $(panel).fadeIn();
         this.EventNotFromOpenRegist = false;
-        //新增在document对象上的点击事件用于关闭注册面板
-        $(document).click(eventUtil.newEventHendleFun(true, this.closeRegister, this));
+        //新增在document对象上的点击事件用于关闭面板
+        $(document).click(eventUtil.newEventHendleFun(true, this.closePanel, this, panel));
+        this.openingPanel = panel;
     }
 };
 
 /**
- * 关闭注册面板
- * @param event 传入的点击事件用于计算点击位置是否在注册面板外
+ * 关闭面板
+ * @param event 传入的点击事件用于计算点击位置是否在面板外
  */
-Index.prototype.closeRegister = function (event) {
-    //点击位置
-    const x = event.clientX;
-    const y = event.clientY;
-    //注册面板的边界
-    const l = this.registerPanel.offsetLeft;
-    const t = this.registerPanel.offsetTop;
-    const r = l + this.registerPanel.offsetWidth;
-    const b = t + this.registerPanel.offsetHeight;
-    if (this.EventNotFromOpenRegist === true && !(x > l && x < r && y > t && y < b)) {
-        $(this.registerPanel).fadeOut();
-        $(document).unbind("click");
-        this.EventNotFromOpenRegist = null;
-        return;
+Index.prototype.closePanel = function (panel, event) {
+    if (panel && panel.style.display !== "none") {
+        //点击位置
+        const x = event.clientX;
+        const y = event.clientY;
+        //注册面板的边界
+        const l = panel.offsetLeft;
+        const t = panel.offsetTop;
+        const r = l + panel.offsetWidth;
+        const b = t + panel.offsetHeight;
+        if (this.EventNotFromOpenRegist === true && !(x > l && x < r && y > t && y < b)) {
+            $(panel).fadeOut();
+            $(document).unbind("click");
+            this.EventNotFromOpenRegist = null;
+            return;
+        }
+        //标记事件是否已经跳过由openRegister传过来的事件
+        this.EventNotFromOpenRegist = true;
     }
-    //标记事件是否已经跳过由openRegister传过来的事件
-    this.EventNotFromOpenRegist = true;
 };
 
-Index.prototype.clickListenerBtnLogin = function () {
-    // var ret = commonUtil.getSessionAttribute("scopedTarget.stateModule");
-    var ret = commonUtil.getState("curUser");
-};

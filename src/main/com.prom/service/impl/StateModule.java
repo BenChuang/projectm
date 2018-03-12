@@ -26,7 +26,19 @@ public class StateModule implements IStateModule{
     }
 
     @Override
-    public User getCurUser(){
-        return curUser;
+    public String getCurUsername(){
+        if (curUser == null) {
+            return "null";
+        }
+        return curUser.getUsername();
+    }
+
+    @Override
+    public int getCurUserId() {
+        if (curUser == null) {
+            return -1;
+        }
+        Integer curUserId = curUser.getId();
+        return curUserId == null ? -1 : curUserId;
     }
 }

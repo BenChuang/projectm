@@ -2,11 +2,13 @@ package service;
 
 import entity.User;
 
-import java.lang.reflect.InvocationTargetException;
-
 public interface IUserService {
 
-    boolean isUserNotExist(User user);
+    boolean isUserExist(User user);
+
+    boolean isUserInfoExist(int userId);
 
     boolean addUser(User user);
+
+    User verify(String email, String password);
 }

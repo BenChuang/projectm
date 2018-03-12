@@ -10,6 +10,7 @@ public interface IStateModule {
     void setCurUser(User user);
 
 
-    User getCurUser();
+    String getCurUsername();
 
+    int getCurUserId();
 }

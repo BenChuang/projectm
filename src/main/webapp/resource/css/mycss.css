@@ -2,6 +2,10 @@
     background: #bdbfbe;
 }
 
+a {
+    cursor: pointer;
+}
+
 body {
     /*background: url(/resource/img/background.svg) fixed;*/
     /*background: url(https://helphero.co/assets/things_28f8b283dab69268d4d244b92eced6a1.svg) fixed;*/
@@ -84,6 +88,7 @@ button {
     border-radius: 0;
 }
 
+
 .jumbotron {
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
     background-color: rgba(0,0,0,0);
@@ -95,14 +100,14 @@ button {
     -webkit-animation: cursor-fadeinout 1s infinite;
 }
 
-.typing-h2 {
+.typing {
     color: #555555;
     text-align: center;
 }
 
 .free-blog {
     position: fixed;
-    padding: 22px 16px 22px 16px;
+    padding: 20px 16px 22px 16px;
     border-radius: 4px;
     border: 1px solid #adadad;
     background-color: white;
