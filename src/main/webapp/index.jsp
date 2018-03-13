@@ -12,12 +12,13 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/">TeamCo | 协作，助力企业和团队实现目标</a>
         </div>
-
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <div id="signing" class="navbar-form navbar-right">
-                <a id="btn_loginPanel">SIGN IN </a>
-                <span>or</span>
-                <a id="btn_register"> SIGN UP</a>
+            <div id="signing" class="navbar-right">
+                <p class="navbar-text">
+                    <a id="btn_loginPanel">SIGN IN </a>
+                    <span>or</span>
+                    <a id="btn_register"> SIGN UP</a>
+                </p>
             </div>
           </div>
     </div>
@@ -63,6 +64,5 @@
 
 <script>
     new Index();
-
 </script>
 </html>

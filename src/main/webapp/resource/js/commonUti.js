@@ -4,7 +4,7 @@ const commonUtil = {
      * @param url string文件的url地址
      * @returns {string}
      */
-    syncLoad: (url) => {
+    syncLoad: url => {
         if("string" === typeof url){
             const respText = $.ajax({url: url, async: false}).responseText;
             if(respText){
@@ -52,5 +52,19 @@ const commonUtil = {
         }
     },
 
+    /**
+     * 构造id为"btn_{ btnName }”形式的按钮的属性名
+     * @param btn
+     * @returns {string} 返回“{ BtnName }“形式字符串
+     */
+    buildBtnName: btn => {
+        if(btn && btn.id){
+            let btnId = btn.id;
+            let indexOf_ = btnId.indexOf("_");
+            if(indexOf_ + 1 !== -1 && btnId.length > indexOf_ + 1){
+                return btnId.substr(indexOf_ + 1 , 1).toUpperCase() + btnId.substring(indexOf_ + 2);
+            }
+        }
+    }
 
 };

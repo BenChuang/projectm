@@ -20,8 +20,7 @@ public class FlowController {
         if(stateModule.isLogined()){
             int curUserId = stateModule.getCurUserId();
             if(curUserId > 0)
-                if(userService.isUserInfoExist(curUserId))
-                    return new ModelAndView("teamco");
+                return new ModelAndView("teamco");
         }
         return new ModelAndView("redirect:/");
     }

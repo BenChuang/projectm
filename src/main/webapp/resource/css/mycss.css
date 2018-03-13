@@ -7,9 +7,12 @@ a {
 }
 
 body {
-    /*background: url(/resource/img/background.svg) fixed;*/
-    /*background: url(https://helphero.co/assets/things_28f8b283dab69268d4d244b92eced6a1.svg) fixed;*/
     padding-top: 50px;
+}
+
+.open>.dropdown-menu {
+    display: block;
+    margin: 0 5px;
 }
 
 .svg {
@@ -112,6 +115,15 @@ button {
     border: 1px solid #adadad;
     background-color: white;
     box-shadow: -4px 4px 2px rgba(0,0,0,.075);
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #555;
+    background-color: #00000000;
+}
+
+.dropdown-menu>li>a {
+    padding: 20px;
 }
 
 @keyframes cursor-fadeinout {

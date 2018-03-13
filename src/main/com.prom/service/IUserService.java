@@ -1,6 +1,7 @@
 package service;
 
 import entity.User;
+import entity.UserInfo;
 
 public interface IUserService {
 
@@ -8,7 +9,9 @@ public interface IUserService {
 
     boolean isUserInfoExist(int userId);
 
-    boolean addUser(User user);
+    User addUser(User user);
+
+    UserInfo addUserInfo(UserInfo userInfo);
 
     User verify(String email, String password);
 }

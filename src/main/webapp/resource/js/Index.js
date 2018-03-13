@@ -18,7 +18,7 @@ Index.prototype.init = function () {
     //判断登录状态，替换loginForm
     if(isLogined === true || isLogined === "true"){
         let curUsername = commonUtil.getState("curUsername");
-        this.signing.innerHTML = "<div><span>Welcome, " + curUsername + ". </span><a href='/controller/teamco'>进入系统</a> or " + "<a href='/controller/logout'>注销</a>";
+        this.signing.innerHTML = "<p class='navbar-text'>Welcome, " + curUsername + ". <a href='/controller/teamco'>进入系统</a> or " + "<a href='/controller/logout'>注销</a></p>";
     }
     //动态打字脚本
     createTypingText(this.typingArea, "协作，助力企业和团队实现目标", "协助团队进行高效工作以及快速响应变化");
@@ -55,6 +55,7 @@ Index.prototype.init = function () {
  * 打开面板
  */
 Index.prototype.openPanel = function (panel) {
+    //对当前已打开的面板先进行关闭操作，避免事件冲突
     if(this.openingPanel){
         this.openingPanel.style.display = "none";
         $(document).unbind("click");

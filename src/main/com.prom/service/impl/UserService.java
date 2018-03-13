@@ -3,6 +3,7 @@ package service.impl;
 import dao.UserInfoRepository;
 import dao.UserRepository;
 import entity.User;
+import entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import service.IUserService;
@@ -28,12 +29,19 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public User addUser(User user) {
         if(StringsUtils.INSTANCE.checkGetterNotNullOrEmpty(user, "email", "username", "password") && !isUserExist(user)){
-            userRepository.saveAndFlush(user);
-            return true;
+            return userRepository.save(user);
         }
-        return false;
+        return null;
+    }
+
+    @Override
+    public UserInfo addUserInfo(UserInfo userInfo) {
+        if(StringsUtils.INSTANCE.checkGetterNotNullOrEmpty(userInfo, "userId", "company")){
+            return userInfoRepository.save(userInfo);
+        }
+        return null;
     }
 
     @Override
