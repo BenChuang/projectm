@@ -1,40 +1,11 @@
 /**
  * 打字效果的文字段落
- * @param elem <div>放置动态文字的块元素
- * @param textFixed string开头固定的文字
+ * @param elem 放置动态文字的元素
  * @param textDynamic string在textFixed后动态打字效果增加的文字
  */
-const createTypingText = (elem, textFixed, textDynamic) => {
+const createTypingText = (elem, textDynamic) => {
     if (elem) {
-        textFixed = "" + textFixed;
         textDynamic = "" + textDynamic;
-        //创建展示文字所需的dom元素,最后加入到elem中
-        // <span>
-        //      <h1 ckass="typing">{ textFixed }</h1>
-        //      <h2 class="typing">
-        //          <span>
-        //              { textDynamic }
-        //          </span>
-        //          <span class="cursor-fadeinout">
-        //              |
-        //          </span>
-        //      </h2>
-        // </span>
-        const span = document.createElement("SPAN");
-        const h2 = document.createElement("H2");//文字大小h2
-        const h1 = document.createElement("H1");
-        h1.textContent = textFixed;
-        h1.className = "typing";
-        const spanText = document.createElement("SPAN");
-        h2.className = "typing";
-        span.appendChild(h1);
-        span.appendChild(h2);
-        const spanCursor = document.createElement("SPAN");
-        spanCursor.innerHTML = "|";
-        spanCursor.className = "cursor-fadeinout";
-        h2.appendChild(spanText);
-        h2.appendChild(spanCursor);
-        elem.appendChild(span);
         const textDynamicLength = textDynamic.length;
         //总帧数
         const frameNum = (textDynamicLength * 2) + 100;
@@ -54,7 +25,7 @@ const createTypingText = (elem, textFixed, textDynamic) => {
                 if (textIndex === textDynamicLength) {
                     clearInterval(interval);
                 }
-                spanText.textContent = textDynamic.substring(0, textIndex);
+                elem.textContent = textDynamic.substring(0, textIndex);
                 if ((frameIndex >= inter && frameIndex < inter + plusPart[0])
                     || (frameIndex >= inter + plusPart[0] + inter && frameIndex < inter + plusPart[0] + inter + plusPart[1])
                     || (frameIndex >= inter + plusPart[0] + inter + plusPart[1] + inter && frameIndex < inter + plusPart[0] + inter + plusPart[1] + inter + plusPart[2])

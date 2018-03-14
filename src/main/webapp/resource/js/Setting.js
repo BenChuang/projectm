@@ -1,5 +1,4 @@
-const Setting = function (that) {
-    this.Teamco = that;
+const Setting = function () {
 };
 
 Setting.prototype.init = function () {

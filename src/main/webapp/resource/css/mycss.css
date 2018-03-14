@@ -2,8 +2,19 @@
     background: #bdbfbe;
 }
 
-a {
+a:focus, a:hover {
+    /*color: #505050;*/
+    text-decoration: none;
+}
+
+a>.project-block>h1, a>.project-block>h2, a>.project-block>h3, a>.project-block>h4, a>.project-block>h5, a>.project-block>h6, a>.project-block>p {
     cursor: pointer;
+    color: #505050
+}
+
+a>.project-block>h1, a>.project-block>h2, a>.project-block>h3, a>.project-block>h4, a>.project-block>h5, a>.project-block>h6, a>.project-block>p:hover {
+    cursor: pointer;
+    color: #505050
 }
 
 body {
@@ -124,6 +135,25 @@ button {
 
 .dropdown-menu>li>a {
     padding: 20px;
+}
+
+.project-block {
+    width: 240px;
+    height: 140px;
+    margin: 12px;
+    background-color: #ababab;
+    display: inline-grid;
+    border-radius: 4px;
+    cursor: pointer;
+    transform: translateY(0px);
+    box-shadow: 0 0 0;
+    transition: -webkit-transform .218s ease, -webkit-box-shadow .218s ease;
+}
+
+.project-block:hover  {
+    box-shadow: 0 7px 21px rgb(56,56,56);
+    transform: translateY(-7px);
+    transition: -webkit-transform .218s ease, -webkit-box-shadow .218s ease;
 }
 
 @keyframes cursor-fadeinout {

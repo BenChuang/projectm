@@ -1,5 +1,4 @@
-const NotificationItem = function (that) {
-    this.Teamco = that;
+const NotificationItem = function () {
 };
 
 NotificationItem.prototype.init = function () {

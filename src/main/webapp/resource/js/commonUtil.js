@@ -2,13 +2,18 @@ const commonUtil = {
     /**
      * 读取静态文件内容
      * @param url string文件的url地址
+     * @param callback
      * @returns {string}
      */
-    syncLoad: url => {
+    loadHtml: (url, callback) => {
         if("string" === typeof url){
-            const respText = $.ajax({url: url, async: false}).responseText;
-            if(respText){
-                return respText;
+            if(callback){
+                $.ajax({url: url, success: ret => {callback(ret.documentElement.outerHTML);}});
+            } else {
+                const respText = $.ajax({url: url, async: false}).responseText;
+                if(respText){
+                    return respText;
+                }
             }
         }
     },

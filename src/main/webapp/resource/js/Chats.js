@@ -1,5 +1,4 @@
-const Chats = function (that) {
-    this.Teamco = that;
+const Chats = function () {
 };
 
 Chats.prototype.init = function () {

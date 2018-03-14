@@ -1,5 +1,4 @@
-const Self = function (that) {
-    this.Teamco = that;
+const Self = function () {
 };
 
 Self.prototype.init = function () {

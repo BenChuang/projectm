@@ -9,7 +9,12 @@ const Index = function () {
     this.btnRegister = $("#btn_register")[0];
     this.btnLoginPanel = $("#btn_loginPanel")[0];
     this.signing = $("#signing")[0];
+
+    this.btnRegister.addEventListener("click", eventUtil.newEventHendleFun(false, this.openPanel, this, this.registerPanel));
+    this.btnLoginPanel.addEventListener("click", eventUtil.newEventHendleFun(false, this.openPanel, this, this.loginPanel));
+
     this.openingPanel = null;
+
     this.init();
 };
 
@@ -21,34 +26,16 @@ Index.prototype.init = function () {
         this.signing.innerHTML = "<p class='navbar-text'>Welcome, " + curUsername + ". <a href='/controller/teamco'>进入系统</a> or " + "<a href='/controller/logout'>注销</a></p>";
     }
     //动态打字脚本
-    createTypingText(this.typingArea, "协作，助力企业和团队实现目标", "协助团队进行高效工作以及快速响应变化");
-    //注册按钮点击事件
-    this.btnRegister.addEventListener("click", eventUtil.newEventHendleFun(false, this.openPanel, this, this.registerPanel));
-    this.btnLoginPanel.addEventListener("click", eventUtil.newEventHendleFun(false, this.openPanel, this, this.loginPanel));
-    //读取小电脑图片
-    const desktop = commonUtil.syncLoad("/resource/img/desktop.svg");
-    $("#desktop").html(desktop);
+    createTypingText(this.typingArea, "协助团队进行高效工作以及快速响应变化");
     //小电脑及其画面的swiper对象初始化
-    this.mySwiper1 = new Swiper('.swiper-container-out', {
+    new Swiper('.swiper-container-out', {
         direction: 'horizontal'
     });
-    this.mySwiper2 = new Swiper('.swiper-container-looping', {
+    new Swiper('.swiper-container-looping', {
         direction: 'horizontal',
-        mousewheel: {eventsTarged: window},
         loop: true,
         autoplay: true
     });
-    //出现滚动条则禁止小电脑画面的滚轮切换事件
-    if (document.body.scrollHeight > document.body.clientHeight) {
-        this.mySwiper2.mousewheel.disable();
-    }
-    window.onresize = eventUtil.newEventHendleFun(false, function () {
-        if (document.body.scrollHeight > document.body.clientHeight) {
-            this.mySwiper2.mousewheel.disable();
-        } else {
-            this.mySwiper2.mousewheel.enable();
-        }
-    }, this);
 };
 
 /**
@@ -65,7 +52,7 @@ Index.prototype.openPanel = function (panel) {
         //第一次点击该按钮才读取面板的表格内容
         if("string" === typeof panel.innerHTML && panel.innerHTML.length === 0){
             let panelPageName = panel.id.substring(0, panel.id.indexOf("Panel"));
-            panel.innerHTML = commonUtil.syncLoad("/" + panelPageName + ".html");
+            panel.innerHTML = commonUtil.loadHtml("/" + panelPageName + ".html");
         }
         $(panel).fadeIn();
         this.EventNotFromOpenRegist = false;
@@ -100,3 +87,5 @@ Index.prototype.closePanel = function (panel, event) {
     }
 };
 
+
+new Index();
