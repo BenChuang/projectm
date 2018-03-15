@@ -72,12 +72,19 @@
             <div class="row">
                 <div class="col-xs-6">
                     <div class="jumbotron" style="box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
-                        <h3 style="text-align: center; margin: 0">项目状态</h3>
+                        <h3 style="text-align: center; margin: 0">项目状态分配</h3><hr>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">未开始<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>
+                            <li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">进行中<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>
+                            <li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">已完成<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>
+                            <li role="presentation"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;"><small style="color: #a3a3a3">添加状态项+</small></h4></a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="jumbotron" style="box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
-                        <h3 style="text-align: center; margin: 0">参与人员</h3>
+                        <h3 style="text-align: center; margin: 0">参与人员</h3><hr>
+
                     </div>
                 </div>
             </div>
@@ -87,7 +94,7 @@
 
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resource/js/jquery-1.12.4.min.js"></script>
 <script src="/resource/js/bootstrap.min.js"></script>
 <script src="/resource/js/commonUtil.js"></script>
 <script src="/resource/js/global.js"></script>

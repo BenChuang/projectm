@@ -88,7 +88,7 @@
 
 </body>
 
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resource/js/jquery-1.12.4.min.js"></script>
 <script src="/resource/js/swiper-4.1.0.min.js"></script>
 <script src="/resource/js/bootstrap.min.js"></script>
 <script src="/resource/js/commonUtil.js"></script>
