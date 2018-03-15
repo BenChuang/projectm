@@ -41,16 +41,49 @@
 </nav>
 
 <div class="container">
-    <div class="row">
-        <a href="#">
-            <div class="project-block">
-                <h1 style="text-align: center; margin: 30px 0 0 0"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></h1>
-                <h3 style="text-align: center; margin: 0 0 20px 0;">创建新项目</h3>
-            </div>
-        </a>
+    <div class="row" id="board_area">
     </div>
 </div>
 
+<div class="outter-block-hidden" id="creat_new_project">
+    <div class="backdrop-hidden" id="backdrop"></div>
+    <div class="floating-block-hidden" id="floating_block">
+        <div style="border-bottom: 2px solid #545454; padding-bottom: 40px">
+            <div style="position: absolute; left: 0; right: 40px; height: 40px; background-color: #545454; border-top-left-radius: 0px;">
+                <h2 style="margin: 3px 8px; color: #ffffff;">创建新项目</h2>
+            </div>
+            <div style="position: absolute; right: 0; width: 40px; height: 40px; background-color: #ff7677; border-left: 2px solid #545454; border-top-right-radius: 0px;">
+                <a id="btn_close_creat_new_project">
+                    <h3 style="margin: 8px; color: #545454"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h3>
+                </a>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row form-inline">
+                <div class="form-group col-xs-5">
+                    <label for="exampleInputName1">项目名称</label>
+                    <input type="text" class="form-control" id="exampleInputName1" placeholder="项目名称（必填）">
+                </div>
+                <div class="form-group col-xs-7">
+                    <label for="exampleInputName2">项目简介</label>
+                    <input type="text" class="form-control" id="exampleInputName2" style="width: 80%" placeholder="项目简介（选填）">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="jumbotron" style="box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
+                        <h3 style="text-align: center; margin: 0">项目状态</h3>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="jumbotron" style="box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
+                        <h3 style="text-align: center; margin: 0">参与人员</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 

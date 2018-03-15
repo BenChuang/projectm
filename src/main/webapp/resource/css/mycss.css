@@ -4,12 +4,14 @@
 
 a:focus, a:hover {
     /*color: #505050;*/
+    cursor: pointer;
     text-decoration: none;
 }
 
 a>.project-block>h1, a>.project-block>h2, a>.project-block>h3, a>.project-block>h4, a>.project-block>h5, a>.project-block>h6, a>.project-block>p {
     cursor: pointer;
-    color: #505050
+    color: #505050;
+    text-align: center;
 }
 
 a>.project-block>h1, a>.project-block>h2, a>.project-block>h3, a>.project-block>h4, a>.project-block>h5, a>.project-block>h6, a>.project-block>p:hover {
@@ -107,6 +109,12 @@ button {
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
     background-color: rgba(0,0,0,0);
     height: 300px;
+    padding: 15px;
+}
+
+.container-fluid .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .cursor-fadeinout {
@@ -137,6 +145,10 @@ button {
     padding: 20px;
 }
 
+.row {
+    margin: 15px -15px;
+}
+
 .project-block {
     width: 240px;
     height: 140px;
@@ -154,6 +166,79 @@ button {
     box-shadow: 0 7px 21px rgb(56,56,56);
     transform: translateY(-7px);
     transition: -webkit-transform .218s ease, -webkit-box-shadow .218s ease;
+}
+
+.outter-block-hidden {
+    position: fixed;
+    display: flex;
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    z-index: 1030;
+    /*transition: all .218s linear;*/
+}
+
+.outter-block {
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    /*transition: all .218s linear;*/
+}
+
+.backdrop-hidden {
+    position: fixed;
+    /*top: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    z-index: 1030;
+    background-color: #383838;
+    opacity: 0;
+    transition: all .218s linear;
+}
+
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #383838;
+    opacity: .7;
+    transition: all .218s linear;
+}
+
+.floating-block-hidden {
+    width: 760px;
+    height: 430px;
+    position: relative;
+    margin: 60px auto;
+    border: 2px solid #545454;
+    border-radius: 3px;
+    z-index: 1050;
+    background-color: #ffffff;
+    transform: translate3d(0,-200%,0);
+    /*transition: all .218s linear;*/
+}
+
+.floating-block {
+    width: 760px;
+    height: 430px;
+    position: relative;
+    margin: 60px auto;
+    border: 2px solid #545454;
+    border-radius: 3px;
+    z-index: 1050;
+    background-color: #ffffff;
+    transform: none;
+    transition: all .2s ease-out;
 }
 
 @keyframes cursor-fadeinout {

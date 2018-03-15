@@ -27,7 +27,7 @@ public class UserController {
             userService.addUserInfo(userInfo);
             stateModule.setCurUser(user);
         }
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:teamco");
     }
 
     @PostMapping("/login")
@@ -36,7 +36,7 @@ public class UserController {
         if(user != null){
             stateModule.setCurUser(user);
         }
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:teamco");
     }
 
     @RequestMapping("/logout")

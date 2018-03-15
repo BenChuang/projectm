@@ -35,7 +35,7 @@ Teamco.prototype.changeBoard = function (btn) {
     }
 };
 
-teamco = new Teamco();
+new Teamco();
 
 
 // this.btnRunning = $("#btn_running")[0];
