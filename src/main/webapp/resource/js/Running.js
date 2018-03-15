@@ -1,12 +1,16 @@
 const Running = function (boardArea) {
     this.boardArea = boardArea;
-    this.btnCloseCreateNewProject = $("#btn_close_creat_new_project")[0];
+    this.btnCloseCreateNewProject = $("#btn_close_create_new_project")[0];
+    this.btnCloseCreateNewProject2 = $("#btn_close_create_new_project_2")[0];
     this.createNewProjectPanel = $("#creat_new_project")[0];
     this.backdrop = $("#backdrop")[0];
     this.floatingBlock = $("#floating_block")[0];
 
-    this.btnCloseCreateNewProject.addEventListener("click", eventUtil.newEventHendleFun(false, this.closeCreateNewProject, this));
+    this.btnCloseCreateNewProject.addEventListener("click", eventUtil.newEventHendleFun(false, this.closeCreateNewProject2, this));
     this.init();
+
+    this.btnCreateNewProject = $("#btn_create_new_project")[0];
+    this.btnCreateNewProject.addEventListener("click", eventUtil.newEventHendleFun(false, this.createNewProject, this));
 };
 
 Running.prototype.init = function () {
@@ -25,7 +29,7 @@ Running.prototype.addNewProjectBlock = function () {
     buff.push('    <h3 style="margin: 0 0 20px 0;">创建新项目</h3>');
     buff.push('</div>');
     a.innerHTML = buff.join('');
-    a.addEventListener("click", eventUtil.newEventHendleFun(false, this.createNewProject, this));
+    a.id = "btn_create_new_project";
     this.boardArea.appendChild(a);
 };
 
@@ -59,3 +63,4 @@ Running.prototype.setCreateNewProjectShow = function (state) {
         this.floatingBlock.className = "floating-block-hidden";
     }
 };
+

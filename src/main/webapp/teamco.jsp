@@ -40,8 +40,9 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row" id="board_area">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12" id="board_area"></div>
     </div>
 </div>
 
@@ -53,7 +54,7 @@
                 <h2 style="margin: 3px 8px; color: #ffffff;">创建新项目</h2>
             </div>
             <div style="position: absolute; right: 0; width: 40px; height: 40px; background-color: #ff7677; border-left: 2px solid #545454; border-top-right-radius: 0px;">
-                <a id="btn_close_creat_new_project">
+                <a id="btn_close_create_new_project">
                     <h3 style="margin: 8px; color: #545454"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h3>
                 </a>
             </div>
@@ -71,7 +72,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <div class="jumbotron" style="box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
+                    <div class="jumbotron" style="overflow-y: auto; box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
                         <h3 style="text-align: center; margin: 0">项目状态分配</h3><hr>
                         <ul class="nav nav-pills nav-stacked">
                             <li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">未开始<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>
@@ -82,15 +83,23 @@
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    <div class="jumbotron" style="box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
+                    <div class="jumbotron" style="overflow-y: auto; box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
                         <h3 style="text-align: center; margin: 0">参与人员</h3><hr>
-
+                        <div class="thumbnail" style="width: 50px; height: 70px; margin: 2px; border-top-left-radius: 25px; border-top-right-radius: 25px; display: inline-block; background-color: #ddd;">
+                            <a><img  src="https://v3.bootcss.com/assets/img/coding.jpeg" alt="路人甲" width="40px" height="40px" style="width:40px; height:40px; border-radius:25px;"></a>
+                            <h5 style="margin: 3px; text-align: center">德华</h5>
+                        </div>
+                        <div class="thumbnail" style="width: 50px; height: 50px; margin: 2px; border-radius: 25px; display: inline-block; background-color: #ddd;">
+                            <a><img src="/resource/img/add.png" alt="添加" width="40px" height="40px" style="width:40px; height:40px; border-radius:25px;"></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 </body>
 
