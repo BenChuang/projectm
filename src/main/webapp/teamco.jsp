@@ -46,58 +46,7 @@
     </div>
 </div>
 
-<div class="outter-block-hidden" id="creat_new_project">
-    <div class="backdrop-hidden" id="backdrop"></div>
-    <div class="floating-block-hidden" id="floating_block">
-        <div style="border-bottom: 2px solid #545454; padding-bottom: 40px">
-            <div style="position: absolute; left: 0; right: 40px; height: 40px; background-color: #545454; border-top-left-radius: 0px;">
-                <h2 style="margin: 3px 8px; color: #ffffff;">创建新项目</h2>
-            </div>
-            <div style="position: absolute; right: 0; width: 40px; height: 40px; background-color: #ff7677; border-left: 2px solid #545454; border-top-right-radius: 0px;">
-                <a id="btn_close_create_new_project">
-                    <h3 style="margin: 8px; color: #545454"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></h3>
-                </a>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row form-inline">
-                <div class="form-group col-xs-5">
-                    <label for="exampleInputName1">项目名称</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="项目名称（必填）">
-                </div>
-                <div class="form-group col-xs-7">
-                    <label for="exampleInputName2">项目简介</label>
-                    <input type="text" class="form-control" id="exampleInputName2" style="width: 80%" placeholder="项目简介（选填）">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">
-                    <div class="jumbotron" style="overflow-y: auto; box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
-                        <h3 style="text-align: center; margin: 0">项目状态分配</h3><hr>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">未开始<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>
-                            <li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">进行中<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>
-                            <li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">已完成<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>
-                            <li role="presentation"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;"><small style="color: #a3a3a3">添加状态项+</small></h4></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="jumbotron" style="overflow-y: auto; box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
-                        <h3 style="text-align: center; margin: 0">参与人员</h3><hr>
-                        <div class="thumbnail" style="width: 50px; height: 70px; margin: 2px; border-top-left-radius: 25px; border-top-right-radius: 25px; display: inline-block; background-color: #ddd;">
-                            <a><img  src="https://v3.bootcss.com/assets/img/coding.jpeg" alt="路人甲" width="40px" height="40px" style="width:40px; height:40px; border-radius:25px;"></a>
-                            <h5 style="margin: 3px; text-align: center">德华</h5>
-                        </div>
-                        <div class="thumbnail" style="width: 50px; height: 50px; margin: 2px; border-radius: 25px; display: inline-block; background-color: #ddd;">
-                            <a><img src="/resource/img/add.png" alt="添加" width="40px" height="40px" style="width:40px; height:40px; border-radius:25px;"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 
@@ -108,6 +57,8 @@
 <script src="/resource/js/commonUtil.js"></script>
 <script src="/resource/js/global.js"></script>
 <script src="/resource/js/eventUtil.js"></script>
+<script src="/resource/js/CreateNewProj.js"></script>
+<script src="/resource/js/FloatingPanel.js"></script>
 <script src="/resource/js/Bussiness.js"></script>
 <script src="/resource/js/Chats.js"></script>
 <script src="/resource/js/Completed.js"></script>

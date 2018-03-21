@@ -29,6 +29,12 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public String findUsernameByEmail(String email){
+        User user = userRepository.findByEmail(email);
+        return user != null?user.getUsername():null;
+    }
+
+    @Override
     public User addUser(User user) {
         if(StringsUtils.INSTANCE.checkGetterNotNullOrEmpty(user, "email", "username", "password") && !isUserExist(user)){
             return userRepository.save(user);

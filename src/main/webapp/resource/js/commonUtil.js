@@ -8,7 +8,7 @@ const commonUtil = {
     loadHtml: (url, callback) => {
         if("string" === typeof url){
             if(callback){
-                $.ajax({url: url, success: ret => {callback(ret.documentElement.outerHTML);}});
+                $.ajax({url: url, success: ret => {callback(ret);}});
             } else {
                 const respText = $.ajax({url: url, async: false}).responseText;
                 if(respText){
@@ -17,6 +17,7 @@ const commonUtil = {
             }
         }
     },
+
     /**
      * 获取当前session中存储的对象
      * @param key
@@ -56,6 +57,32 @@ const commonUtil = {
                 return ajax.responseText;
         }
     },
+
+
+    runService: (serviceName, methodName, params, callback) => {
+        let paramsString = params.map(param => param.toString()).reduce( (pre, cur) => {
+            if(cur) return pre + ";" + cur;
+            else return pre;
+        });
+        if (callback)
+            $.ajax({url: "/controller/service", data: {key: key}, success: callback, error: () => alert("runService error")});
+        else{
+            let ajax = $.ajax({
+                url: "/controller/service",
+                data: {
+                    serviceName: serviceName,
+                    methodName: methodName,
+                    paramsString: paramsString
+                },
+                async: false,
+                error: () => alert("runService error")
+            });
+            if(ajax.status === 200)
+                return ajax.responseText;
+        }
+    },
+
+
 
     /**
      * 构造id为"btn_{ btnName }”形式的按钮的属性名

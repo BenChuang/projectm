@@ -9,6 +9,8 @@ public interface IUserService {
 
     boolean isUserInfoExist(int userId);
 
+    String findUsernameByEmail(String email);
+
     User addUser(User user);
 
     UserInfo addUserInfo(UserInfo userInfo);

@@ -15,9 +15,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div id="signing" class="navbar-right">
                 <p class="navbar-text">
-                    <a id="btn_loginPanel">SIGN IN </a>
-                    <span>or</span>
-                    <a id="btn_register"> SIGN UP</a>
+                    <a id="btn_loginPanel"><b>SIGN IN</b></a>
+                    <span> or </span>
+                    <a id="btn_register"><b>SIGN UP</b></a>
                 </p>
             </div>
           </div>

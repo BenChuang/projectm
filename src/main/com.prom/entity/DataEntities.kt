@@ -1,6 +1,7 @@
 package entity
 
-import java.util.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.persistence.*
 
 /**
@@ -22,19 +23,93 @@ data class User(
  * 用户信息类
  */
 @Entity
-@Table(name = "user_info")
+@Table(name = "userinfo")
 data class UserInfo(
-        @Id var userId: Int? = null
+        @Id var userId: Int? = null,
+        @Column var company: String = "",
+        @Column var department: String = "",
+        @Column var gender : Int = 0,
+        @Column var age : Int = 0
 ){
-    @Column var company: String = ""
-    @Column var department: String = ""
-    @Column var gender : Int = 0
-        set(value) = if (value in 0..1) field = value else throw IllegalArgumentException("性别类型不合法")
-    @Column var age : Int = 0
-        set(value) = if (value in 0..200) field = value else throw IllegalArgumentException("年龄数值不合法")
 
     constructor():this(null)
 }
 
 
+/**
+ * 项目类
+ */
+@Entity
+@Table(name = "project")
+data class Project(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null,
+        @Column var projectOwner: Int? = null,
+        @Column var projectName: String = "",
+        @Column var projectIntro: String = "",
+        @Column var createTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+){
+    constructor(): this(null)
+}
 
+
+/**
+ * 任务类
+ */
+@Entity
+@Table(name = "optask")
+data class OpTask(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null,
+        @Column var taskOwner: Int? = null,
+        @Column var taskName: String = "",
+        @Column var taskIntro: String = "",
+        @Column @OneToOne(mappedBy = "id") var projectAndState: StateToProject? = null,
+        @Column var createTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+){
+    constructor(): this(null)
+}
+
+
+/**
+ * 事件类
+ */
+@Entity
+@Table(name = "opevent")
+data class OpEvent(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null,
+        @Column var eventType: Int? = null,
+        @Column var userId: Int? = null,
+        @Column var dateTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+){
+    constructor(): this(null)
+}
+
+
+/**
+ * 项目状态类
+ */
+@Entity
+@Table(name = "project_state")
+data class StateToProject(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null,
+        @Column var projectId: Int? = null,
+        @Column var stateName: String = "",
+        @Column var preState: String = ""
+
+){
+    constructor(): this(null)
+}
+
+
+
+/**
+ * 参与人员类
+ */
+@Entity
+@Embeddable
+@Table(name = "project_user")
+data class UserToProject(
+        @Id var projectId: Int? = null,
+        @Id var userId: Int? = null
+){
+    constructor(): this(null, null)
+}

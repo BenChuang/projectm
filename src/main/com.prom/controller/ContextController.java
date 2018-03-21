@@ -12,6 +12,12 @@ import service.impl.StateModule;
 import utils.StringsUtils;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class ContextController {
@@ -48,5 +54,29 @@ public class ContextController {
             Object value = JsonObject.mapFrom(scopedStateModule).getValue(key);
             return String.valueOf(value);
         } else return "null";
+    }
+
+
+    @RequestMapping(value = "service")
+    public @ResponseBody String runService(String serviceName, String methodName, String paramsString) {
+        if (serviceName.contains("Service")){
+            Object[] params = paramsString.split(";");
+            Object service = beanFactory.getBean(serviceName);
+            Method[] methods = service.getClass().getDeclaredMethods();
+            for (Method method : methods) {
+                if (method.getName().equals(methodName) && method.getParameterCount() == params.length){
+                    Class[] parameterTypes = method.getParameterTypes();
+                    if(Arrays.stream(parameterTypes).allMatch(aClass -> aClass.equals(String.class))){
+                        try {
+                            Object ret = method.invoke(service, params);
+                            return ret != null?ret.toString():"null";
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        return "null";
     }
 }

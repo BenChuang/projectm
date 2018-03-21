@@ -906,84 +906,315 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="229" parent="8" name="user">
+    <table id="229" parent="8" name="opevent">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="230" parent="8" name="user_info">
+    <table id="230" parent="8" name="optask">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="231" parent="229" name="id">
+    <table id="231" parent="8" name="project">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="232" parent="8" name="project_state">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="233" parent="8" name="project_user">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="234" parent="8" name="user">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="235" parent="8" name="userinfo">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="236" parent="229" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="232" parent="229" name="username">
+    <column id="237" parent="229" name="eventType">
       <Position>2</Position>
-      <DataType>char(20)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="233" parent="229" name="email">
+    <column id="238" parent="229" name="userId">
       <Position>3</Position>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="229" name="password">
+    <column id="239" parent="229" name="dateTime">
       <Position>4</Position>
-      <DataType>varchar(30)|0</DataType>
+      <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="235" parent="229" name="user_email_uindex">
-      <ColNames>email</ColNames>
-      <Unique>1</Unique>
+    <index id="240" parent="229" name="event_user_id_fk">
+      <ColNames>userId</ColNames>
     </index>
-    <key id="236" parent="229" name="PRIMARY">
+    <key id="241" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="237" parent="229" name="user_email_uindex">
-      <ColNames>email</ColNames>
-      <UnderlyingIndexName>user_email_uindex</UnderlyingIndexName>
+    <foreign-key id="242" parent="229" name="event_user_id_fk">
+      <ColNames>userId</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="243" parent="230" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="244" parent="230" name="taskName">
+      <Position>2</Position>
+      <DataType>char(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="245" parent="230" name="taskIntro">
+      <Position>3</Position>
+      <DataType>char(100)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="230" name="createTime">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="230" name="projectAndState">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="230" name="taskOwner">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="249" parent="230" name="task_project_state_id_fk">
+      <ColNames>projectAndState</ColNames>
+    </index>
+    <index id="250" parent="230" name="task_user_id_fk">
+      <ColNames>taskOwner</ColNames>
+    </index>
+    <key id="251" parent="230" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <column id="238" parent="230" name="userId">
+    <foreign-key id="252" parent="230" name="task_project_state_id_fk">
+      <ColNames>projectAndState</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>project_state</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="253" parent="230" name="task_user_id_fk">
+      <ColNames>taskOwner</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="254" parent="231" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="231" name="projectName">
+      <Position>2</Position>
+      <DataType>char(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="231" name="projectIntro">
+      <Position>3</Position>
+      <DataType>char(200)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="231" name="createTime">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="258" parent="231" name="projectOwner">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="259" parent="231" name="project_user_id_fk">
+      <ColNames>projectOwner</ColNames>
+    </index>
+    <key id="260" parent="231" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="261" parent="231" name="project_user_id_fk">
+      <ColNames>projectOwner</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="262" parent="232" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="263" parent="232" name="projectId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="264" parent="232" name="stateName">
+      <Position>3</Position>
+      <DataType>char(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="265" parent="232" name="preState">
+      <Position>4</Position>
+      <DataType>char(30)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="266" parent="232" name="project_state_project_id_fk">
+      <ColNames>projectId</ColNames>
+    </index>
+    <key id="267" parent="232" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="268" parent="232" name="project_state_project_id_fk">
+      <ColNames>projectId</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>project</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="269" parent="233" name="projectId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="230" name="company">
+    <column id="270" parent="233" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="271" parent="233" name="project_user_projectId_userId_pk">
+      <ColNames>projectId
+userId</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="272" parent="233" name="project_user_user_id_fk">
+      <ColNames>userId</ColNames>
+    </index>
+    <key id="273" parent="233" name="project_user_projectId_userId_pk">
+      <ColNames>projectId
+userId</ColNames>
+      <UnderlyingIndexName>project_user_projectId_userId_pk</UnderlyingIndexName>
+    </key>
+    <foreign-key id="274" parent="233" name="project_user_project_id_fk">
+      <ColNames>projectId</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>project</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="275" parent="233" name="project_user_user_id_fk">
+      <ColNames>userId</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="276" parent="234" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="277" parent="234" name="username">
+      <Position>2</Position>
+      <DataType>char(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="278" parent="234" name="email">
+      <Position>3</Position>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="279" parent="234" name="password">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="280" parent="234" name="user_email_uindex">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="281" parent="234" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="282" parent="234" name="user_email_uindex">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>user_email_uindex</UnderlyingIndexName>
+    </key>
+    <column id="283" parent="235" name="userId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="235" name="company">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="230" name="department">
+    <column id="285" parent="235" name="department">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="230" name="gender">
+    <column id="286" parent="235" name="gender">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="230" name="age">
+    <column id="287" parent="235" name="age">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="243" parent="230" name="PRIMARY">
+    <key id="288" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="244" parent="230" name="user_info_user_id_fk">
+    <foreign-key id="289" parent="235" name="user_info_user_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>user</RefTableName>

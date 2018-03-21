@@ -1,0 +1,34 @@
+<div class="row form-inline">
+    <div class="form-group col-xs-10">
+        <label for="exampleInputName1">项目名称</label>
+        <input type="text" class="form-control input-project-name" id="exampleInputName1" placeholder="项目名称（必填）">
+        <label for="exampleInputName2">项目简介</label>
+        <input type="text" class="form-control input-project-intro" id="exampleInputName2" style="width: 45%" placeholder="项目简介（选填）">
+    </div>
+    <div class="form-group col-xs-2">
+        <button class="btn btn-default btn-create" style="width: 100%;"><b>创建</b></button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="jumbotron" style="overflow-y: auto; box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,.5)">
+            <h3 style="text-align: center; margin: 0">任务状态分配</h3><hr>
+            <ul class="nav nav-pills nav-stacked" id="project_state_flow">
+                <li role="presentation"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;"><small style="color: #a3a3a3">删除状态项-</small></h4></a></li>
+                <!--<li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">未开始<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>-->
+                <!--<li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">进行中<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>-->
+                <!--<li role="presentation" class="active"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;">已完成<small style="color: #a3a3a3">(点击以编辑)</small></h4></a></li>-->
+                <li role="presentation"><a href="#"><h4 style="text-align: center; padding: 0; margin: 0;"><small style="color: #a3a3a3">添加状态项+</small></h4></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="jumbotron teammate-panel" style="overflow-y: auto; box-shadow: inset 0 0 8px 0 rgba(0,0,0,.5)">
+            <h3 style="text-align: center; margin: 0">参与人员</h3><hr>
+            <div class="thumbnail thumbnail-last" style="transition: all .30s ease; width: 50px; height: 50px; margin: 2px; border-radius: 25px; display: inline-block; background-color: #ddd;">
+                <div style="display: none; width: 300px"><input type="text" style="width: 0; margin: 6px; padding: 2px; display: none;" placeholder="按邮箱查找"><button style="display: none">添加</button><button style="display: none">x</button></div>
+                <a><img src="/resource/img/add.png" alt="添加" width="40px" height="40px" style="width:40px; height:40px; border-radius:25px;"></a>
+            </div>
+        </div>
+    </div>
+</div>

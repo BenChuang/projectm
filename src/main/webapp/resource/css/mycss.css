@@ -2,8 +2,13 @@
     background: #bdbfbe;
 }
 
+a {
+    color: #777;
+    text-decoration: none;
+}
+
 a:focus, a:hover {
-    /*color: #505050;*/
+    color: #333;
     cursor: pointer;
     text-decoration: none;
 }
@@ -17,6 +22,13 @@ a>.project-block>h1, a>.project-block>h2, a>.project-block>h3, a>.project-block>
 a>.project-block>h1, a>.project-block>h2, a>.project-block>h3, a>.project-block>h4, a>.project-block>h5, a>.project-block>h6, a>.project-block>p:hover {
     cursor: pointer;
     color: #505050
+}
+
+
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #585858;
 }
 
 body {
@@ -91,12 +103,12 @@ button {
 
 
 .navbar-default {
-    background: -moz-linear-gradient(top, #8ed7ff 0%, #ffffff 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8ed7ff), color-stop(100%,#ffffff));
-    background: -webkit-linear-gradient(top, #8ed7ff 0%,#ffffff 100%);
-    background: -o-linear-gradient(top, #8ed7ff 0%,#ffffff 100%);
-    background: -ms-linear-gradient(top, #8ed7ff 0%,#ffffff 100%);
-    background: linear-gradient(to bottom, #8ed7ff 0%,#ffffff 100%);
+    background: -moz-linear-gradient(top, rgba(0,0,0,.25) 0%, #ffffff 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,.25)), color-stop(100%,#ffffff));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,.25) 0%,#ffffff 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,.25) 0%,#ffffff 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,.25) 0%,#ffffff 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,.25) 0%,#ffffff 100%);
     border: hidden;
 }
 
