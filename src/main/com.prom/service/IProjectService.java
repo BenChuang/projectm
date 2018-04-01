@@ -1,5 +1,6 @@
 package service;
 
+import entity.OpTask;
 import entity.Project;
 import entity.User;
 
@@ -17,4 +18,6 @@ public interface IProjectService{
     void initStates(Project project, String[] states);
 
     void initTeammates(Project project, String[] teammatesEmail);
+
+    OpTask addTadk(OpTask task);
 }

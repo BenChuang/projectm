@@ -973,7 +973,7 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="230" name="taskName">
+    <column id="244" parent="230" name="taskTitle">
       <Position>2</Position>
       <DataType>char(50)|0</DataType>
       <NotNull>1</NotNull>
@@ -1001,232 +1001,251 @@
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="249" parent="230" name="task_project_state_id_fk">
+    <column id="249" parent="230" name="deadline">
+      <Position>7</Position>
+      <DataType>date|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="230" name="taskFor">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="251" parent="230" name="task_project_state_id_fk">
       <ColNames>projectAndState</ColNames>
     </index>
-    <index id="250" parent="230" name="task_user_id_fk">
+    <index id="252" parent="230" name="task_user_id_fk">
       <ColNames>taskOwner</ColNames>
     </index>
-    <key id="251" parent="230" name="PRIMARY">
+    <index id="253" parent="230" name="optask_user_id_fk">
+      <ColNames>taskFor</ColNames>
+    </index>
+    <key id="254" parent="230" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="252" parent="230" name="task_project_state_id_fk">
+    <foreign-key id="255" parent="230" name="task_project_state_id_fk">
       <ColNames>projectAndState</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>project_state</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="253" parent="230" name="task_user_id_fk">
+    <foreign-key id="256" parent="230" name="task_user_id_fk">
       <ColNames>taskOwner</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="254" parent="231" name="id">
+    <foreign-key id="257" parent="230" name="optask_user_id_fk">
+      <ColNames>taskFor</ColNames>
+      <RefSchemaName>projectm</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="258" parent="231" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="231" name="projectName">
+    <column id="259" parent="231" name="projectName">
       <Position>2</Position>
       <DataType>char(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="231" name="projectIntro">
+    <column id="260" parent="231" name="projectIntro">
       <Position>3</Position>
       <DataType>char(200)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="231" name="createTime">
+    <column id="261" parent="231" name="createTime">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="231" name="projectOwner">
+    <column id="262" parent="231" name="projectOwner">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="259" parent="231" name="project_user_id_fk">
+    <index id="263" parent="231" name="project_user_id_fk">
       <ColNames>projectOwner</ColNames>
     </index>
-    <key id="260" parent="231" name="PRIMARY">
+    <key id="264" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="261" parent="231" name="project_user_id_fk">
+    <foreign-key id="265" parent="231" name="project_user_id_fk">
       <ColNames>projectOwner</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="262" parent="232" name="id">
+    <column id="266" parent="232" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="232" name="projectId">
+    <column id="267" parent="232" name="projectId">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="232" name="stateName">
+    <column id="268" parent="232" name="stateName">
       <Position>3</Position>
       <DataType>char(30)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="232" name="preState">
+    <column id="269" parent="232" name="preState">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="266" parent="232" name="project_state_project_id_fk">
+    <index id="270" parent="232" name="project_state_project_id_fk">
       <ColNames>projectId</ColNames>
     </index>
-    <key id="267" parent="232" name="PRIMARY">
+    <key id="271" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="268" parent="232" name="project_state_project_id_fk">
+    <foreign-key id="272" parent="232" name="project_state_project_id_fk">
       <ColNames>projectId</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>project</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="269" parent="233" name="id">
+    <column id="273" parent="233" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="233" name="projectId">
+    <column id="274" parent="233" name="projectId">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="233" name="userId">
+    <column id="275" parent="233" name="userId">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="272" parent="233" name="project_user_projectId_userId_pk">
+    <index id="276" parent="233" name="project_user_projectId_userId_pk">
       <ColNames>projectId
 userId</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="273" parent="233" name="project_user_user_id_fk">
+    <index id="277" parent="233" name="project_user_user_id_fk">
       <ColNames>userId</ColNames>
     </index>
-    <key id="274" parent="233" name="PRIMARY">
+    <key id="278" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="275" parent="233" name="project_user_projectId_userId_pk">
+    <key id="279" parent="233" name="project_user_projectId_userId_pk">
       <ColNames>projectId
 userId</ColNames>
       <UnderlyingIndexName>project_user_projectId_userId_pk</UnderlyingIndexName>
     </key>
-    <foreign-key id="276" parent="233" name="project_user_project_id_fk">
+    <foreign-key id="280" parent="233" name="project_user_project_id_fk">
       <ColNames>projectId</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>project</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="277" parent="233" name="project_user_user_id_fk">
+    <foreign-key id="281" parent="233" name="project_user_user_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="278" parent="234" name="id">
+    <column id="282" parent="234" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="234" name="username">
+    <column id="283" parent="234" name="username">
       <Position>2</Position>
       <DataType>char(20)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="234" name="email">
+    <column id="284" parent="234" name="email">
       <Position>3</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="234" name="password">
+    <column id="285" parent="234" name="password">
       <Position>4</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="282" parent="234" name="user_email_uindex">
+    <index id="286" parent="234" name="user_email_uindex">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="283" parent="234" name="PRIMARY">
+    <key id="287" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="284" parent="234" name="user_email_uindex">
+    <key id="288" parent="234" name="user_email_uindex">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>user_email_uindex</UnderlyingIndexName>
     </key>
-    <column id="285" parent="235" name="userId">
+    <column id="289" parent="235" name="userId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="235" name="company">
+    <column id="290" parent="235" name="company">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="235" name="department">
+    <column id="291" parent="235" name="department">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="235" name="gender">
+    <column id="292" parent="235" name="gender">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="235" name="age">
+    <column id="293" parent="235" name="age">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="290" parent="235" name="PRIMARY">
+    <key id="294" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="291" parent="235" name="user_info_user_id_fk">
+    <foreign-key id="295" parent="235" name="user_info_user_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>projectm</RefSchemaName>
       <RefTableName>user</RefTableName>

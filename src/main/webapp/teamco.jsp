@@ -59,6 +59,7 @@
 <script src="/resource/js/eventUtil.js"></script>
 <script src="/resource/js/CreateNewProj.js"></script>
 <script src="/resource/js/FloatingPanel.js"></script>
+<script src="/resource/js/Project.js"></script>
 <script src="/resource/js/Bussiness.js"></script>
 <script src="/resource/js/Chats.js"></script>
 <script src="/resource/js/Completed.js"></script>

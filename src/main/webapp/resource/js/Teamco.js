@@ -1,7 +1,8 @@
 const Teamco = function () {
     this.username = commonUtil.getState("curUsername");
     this.head = $("#head")[0];
-    this.currentBoard = new Board($("#btn_running")[0]);
+    this.currentBoard = new Board();
+    this.currentBoard.initBoardFromBtn($("#btn_running")[0]);
 
     let AllFunctionBtns = $(".btn-function");
     for(let btn of AllFunctionBtns){
@@ -27,11 +28,10 @@ Teamco.prototype.doFunction = function (btn) {
 
 Teamco.prototype.changeBoard = function (btn) {
     if(this.currentBoard.controlBtn !== btn){
-        let board = new Board(btn);
+        this.currentBoard.initBoardFromBtn(btn);
         this.currentBoard.controlBtn.childNodes[0].className = "glyphicon glyphicon-option-horizontal";
-        this.head.textContent = board.boardName;
-        this.currentBoard = board;
-        board.controlBtn.childNodes[0].className = "glyphicon glyphicon-ok";
+        this.head.textContent = this.currentBoard.boardName;
+        this.currentBoard.controlBtn.childNodes[0].className = "glyphicon glyphicon-ok";
     }
 };
 

@@ -297,12 +297,37 @@ button {
 }
 
 .task-block {
+    display: flex;
+    flex-flow: column;
+    border-left: solid;
+    border-color: gray;
     height: 90px;
     padding: 2px;
     background: #d8d8d8;
     margin-bottom: 8px;
     margin-right: 2px;
     border-radius: 3px;
+}
+
+.title-input {
+    border: 0;
+    padding: 4px 8px;
+    border-bottom: 1px solid gray;
+    margin: 0 40px;
+    background: #d8d8d8;
+}
+
+.title-input:focus {
+    outline: 0;
+}
+
+.deadline-input {
+    margin: 6px 40px;
+    border: 0;
+}
+
+.deadline-input:focus {
+    outline: 0;
 }
 
 @keyframes cursor-fadeinout {

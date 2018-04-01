@@ -1,5 +1,6 @@
 package entity
 
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.persistence.*
@@ -60,11 +61,12 @@ data class Project(
 data class OpTask(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null,
         @Column var taskOwner: Int? = null,
-        @Column var taskName: String = "",
+        @Column var taskTitle: String = "",
         @Column var taskIntro: String = "",
         @Column var projectAndState: Int? = null,
-        @Column var createTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-){
+        @Column var createTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+        @Column var deadline: String = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+        @Column var taskFor: Int? = null){
     constructor(): this(null)
 }
 

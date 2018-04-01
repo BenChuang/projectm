@@ -1,5 +1,8 @@
-const Running = function (boardArea) {
-    this.boardArea = boardArea;
+const Running = function (board) {
+    this.board = board;
+    this.boardArea = this.board.boardArea;
+    this.boardArea.style.flexWrap = "wrap";
+    this.boardArea.style.display = "flex";
     // this.btnCloseCreateNewProject = $("#btn_close_create_new_project")[0];
     // this.createNewProjectPanel = $("#creat_new_project")[0];
     // this.backdrop = $("#backdrop")[0];
@@ -13,7 +16,6 @@ const Running = function (boardArea) {
 };
 
 Running.prototype.init = function () {
-    this.boardArea.innerHTML = "";
     this.addProjectBlocks();
 };
 
@@ -73,7 +75,7 @@ Running.prototype.addProjectBlock = function (projectId) {
         buff.push('    <div style="height: 20px"> <h5 style="margin: 0 6px; text-align: right"><small>' + project.createTime.substring(0, 10) + '</small></h5></div>');
         buff.push('</div>');
         a.innerHTML = buff.join('');
-        a.addEventListener("click", eventUtil.newEventHendleFun(false, this.openProject, this, project.id));
+        a.addEventListener("click", eventUtil.newEventHendleFun(false, this.openProject, this, project.id, project.projectName));
         this.boardArea.insertBefore(a, this.btnCreateNewProject);
     }
 
@@ -90,36 +92,11 @@ Running.prototype.createNewProject = function () {
 };
 
 
-Running.prototype.openProject = function (projectId) {
-    debugger;
+Running.prototype.openProject = function (projectId, projectName) {
     this.boardArea.innerHTML = "";
     this.boardArea.style.flexWrap = "";
     this.boardArea.style.display = "-webkit-box";
-    let allStateString = commonUtil.runService("projectService", "findAllStateToProject", projectId);
-    let allStates = eval(allStateString);
-    for(let state of allStates){
-        let stateBlock = document.createElement("DIV");
-        stateBlock.className = "jumbotron state-block";
-        stateBlock.innerHTML =
-            '<h3>'+ state.stateName +'</h3><hr>' +
-            '<div class="task-list">' +
-            '   <div class="task-block">' +
-            '   </div>' +
-            '   <div class="task-block">' +
-            '   </div>' +
-            '   <div class="task-block">' +
-            '   </div>' +
-            '   <div class="task-block">' +
-            '   </div>' +
-            '   <div class="task-block">' +
-            '   </div>' +
-            '</div>' +
-            '<a><h5>增加新任务+</h5></a>';
-        this.boardArea.appendChild(stateBlock);
-    }
+    this.board.initBoardWithName("Project", projectName, [projectId, this.board]);
 };
 
 
-Running.prototype.addStateBlock = function (stateId) {
-
-};

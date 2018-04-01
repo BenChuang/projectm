@@ -1,13 +1,7 @@
 package service.impl;
 
-import dao.ProjectRepository;
-import dao.StateToProjectRepository;
-import dao.UserRepository;
-import dao.UserToProjectRepository;
-import entity.Project;
-import entity.StateToProject;
-import entity.User;
-import entity.UserToProject;
+import dao.*;
+import entity.*;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -28,6 +22,8 @@ public class ProjectService implements IProjectService {
     private StateToProjectRepository stateToProjectRepository;
     @Autowired
     private UserToProjectRepository userToProjectRepository;
+    @Autowired
+    private OpTaskRepository opTaskRepository;
 
     @Override
     public String findProjectStringById(String id) {
@@ -114,5 +110,10 @@ public class ProjectService implements IProjectService {
             }
         }
         userToProjectRepository.flush();
+    }
+
+    @Override
+    public OpTask addTadk(OpTask task) {
+        return opTaskRepository.save(task);
     }
 }
