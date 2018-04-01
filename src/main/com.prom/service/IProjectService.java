@@ -1,7 +1,20 @@
 package service;
 
 import entity.Project;
+import entity.User;
 
 public interface IProjectService{
-    Project addProject(Project project);
+
+
+    String findProjectStringById(String id);
+
+    String findAllProjectIdByUserId(String userId);
+
+    String findAllStateToProject(String projectId);
+
+    Project addProject(Project project, String[] states, String[] teammatesEmail);
+
+    void initStates(Project project, String[] states);
+
+    void initTeammates(Project project, String[] teammatesEmail);
 }

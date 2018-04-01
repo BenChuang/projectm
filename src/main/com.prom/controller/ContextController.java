@@ -31,7 +31,7 @@ public class ContextController {
      * @param httpSession
      * @return 返回值或对象json字符串，值不存在均返回"null"
      */
-    @RequestMapping(value = "sessAttr")
+    @RequestMapping(value = "sessAttr", produces = "text/plain; charset=utf-8")
     public @ResponseBody String getSessionAttribute(String key, HttpSession httpSession) {
         Object attr = httpSession.getAttribute(key);
         if (!StringsUtils.INSTANCE.isNullOrEmpty(attr) && !key.startsWith("scopedTarget")){
@@ -47,7 +47,7 @@ public class ContextController {
      * @param httpSession
      * @return 返回值或对象json字符串，stateModule未初始化及值不存在均返回"null"
      */
-    @RequestMapping(value = "state")
+    @RequestMapping(value = "state", produces = "text/plain; charset=utf-8")
     public @ResponseBody String getState(String key, HttpSession httpSession) {
         StateModule scopedStateModule = (StateModule) httpSession.getAttribute("scopedTarget.stateModule");
         if(scopedStateModule != null){
@@ -57,7 +57,7 @@ public class ContextController {
     }
 
 
-    @RequestMapping(value = "service")
+    @RequestMapping(value = "service", produces = "text/plain; charset=utf-8")
     public @ResponseBody String runService(String serviceName, String methodName, String paramsString) {
         if (serviceName.contains("Service")){
             Object[] params = paramsString.split(";");
@@ -79,4 +79,6 @@ public class ContextController {
         }
         return "null";
     }
+
+
 }

@@ -166,7 +166,7 @@ button {
     height: 140px;
     margin: 12px;
     background-color: #ababab;
-    display: inline-grid;
+    display: block;
     border-radius: 4px;
     cursor: pointer;
     transform: translateY(0px);
@@ -179,6 +179,13 @@ button {
     transform: translateY(-7px);
     transition: -webkit-transform .218s ease, -webkit-box-shadow .218s ease;
 }
+
+.project-a {
+    transition: all .218s ease;
+}
+
+
+
 
 .outter-block-hidden {
     position: fixed;
@@ -228,15 +235,16 @@ button {
 }
 
 .floating-block-hidden {
-    width: 760px;
-    height: 430px;
+    overflow: hidden;
+    width: 0;
+    height: 0;
     position: relative;
     margin: 60px auto;
     border: 2px solid #545454;
     border-radius: 3px;
     z-index: 1050;
     background-color: #ffffff;
-    transform: translate3d(0,-200%,0);
+    transform: translate3d(0,-250%,0);
     /*transition: all .218s linear;*/
 }
 
@@ -251,6 +259,50 @@ button {
     background-color: #ffffff;
     transform: none;
     transition: all .2s ease-out;
+}
+
+
+.state-block {
+    height: 500px;
+    width: 360px;
+    margin: 20px 10px;
+    background: #fff;
+}
+
+.state-block h3  {
+    margin: 0;
+}
+
+.state-block hr  {
+    margin: 6px 0;
+}
+
+.task-list {
+    height: 400px;
+    background: #fff;
+    overflow-y: scroll;
+}
+
+.task-list::-webkit-scrollbar {
+    width: 7px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background-color: #a6a6a6;
+    border-left: 2px solid transparent;
+}
+.task-list::-webkit-scrollbar-track {
+    background-color: #e5e5e5;
+    border-left: 2px solid transparent;
+}
+
+.task-block {
+    height: 90px;
+    padding: 2px;
+    background: #d8d8d8;
+    margin-bottom: 8px;
+    margin-right: 2px;
+    border-radius: 3px;
 }
 
 @keyframes cursor-fadeinout {

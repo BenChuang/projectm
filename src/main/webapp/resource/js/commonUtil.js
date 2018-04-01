@@ -51,7 +51,7 @@ const commonUtil = {
                 url: "/controller/state",
                 data: {key: key},
                 async: false,
-                error: () => alert("getState error")
+                error: ( jqXHR,  textStatus,  errorThrown) => {debugger;alert("getState error");}
             });
             if(ajax.status === 200)
                 return ajax.responseText;
@@ -60,6 +60,11 @@ const commonUtil = {
 
 
     runService: (serviceName, methodName, params, callback) => {
+        if(params !== undefined && params.constructor.name !== "Array"){
+            const arr = [];
+            arr.push(params);
+            params = arr;
+        }
         let paramsString = params.map(param => param.toString()).reduce( (pre, cur) => {
             if(cur) return pre + ";" + cur;
             else return pre;

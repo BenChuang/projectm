@@ -89,6 +89,31 @@ const shuffleSortArr = arr => arr.sort(() => Math.random() - 0.5);
  */
 const shuffleArr = (length, min, max) => Array.apply(null, new Array(length)).map(() => Math.floor((Math.random() * (max - min) + min))).sort((a, b) => a - b);
 
+
+/**
+ * 计算中英文混合字符串所占字节数
+ * 除了ASCII编码内字符，其余按照双字节算
+ * @param str
+ * @returns {number}
+ */
+const getByteLength = str => {
+    let byteLen=0, len=str.length;
+    if(str !== undefined && typeof str === "string"){
+        for(let i=0; i<len; i++){
+            if(str.charCodeAt(i)>255){
+                byteLen += 2;
+            }
+            else{
+                byteLen++;
+            }
+        }
+        return byteLen;
+    }
+    else{
+        return 0;
+    }
+};
+
 /**
  * 测试脚本Testing script
  */

@@ -34,7 +34,14 @@ CreateNewProj.prototype.init = function () {
     this.addStateItem("未开始");
     this.addStateItem("进行中");
     this.addStateItem("已完成");
-    this.addTeammatePatten(commonUtil.getState("curUsername"));
+    let curUsername = commonUtil.getState("curUsername");
+    let curUserEmail = commonUtil.getState("curUserEmail");
+    this.addTeammatePatten(curUsername);
+    let user = {
+        username: curUsername,
+        email: curUserEmail
+    };
+    this.teammate.push(user);
 };
 
 CreateNewProj.prototype.addStateItem = function (title) {
@@ -148,25 +155,30 @@ CreateNewProj.prototype.addTeammatePatten = function (username, iconSrc) {
 };
 
 CreateNewProj.prototype.addNewProject = function () {
-    debugger
     let projectName = this.inputProjectName.value;
     let projectIntro = this.inputProjectIntro.value;
     let projectStateFlow = this.stateFlow.join(",");
-    let projectTeammate = "[" + this.teammate.map(value => {
-        return '{"username": "' + value.username + '","email": "' + value.email + '"}';
-    }).join(",") + "]";
+    let projectTeammatesEmail = this.teammate.map(value => value.email).join(",");
     let ret = $.ajax({
         url: "/controller/newProject",
         data: {
             projectName: projectName,
             projectIntro: projectIntro,
             projectStateFlow: projectStateFlow,
-            projectTeammate: projectTeammate
+            projectTeammatesEmail: projectTeammatesEmail
         },
-        async: false,
-        error: () => alert("getSessionAttribute error")
-    }).responseText;
-    debugger
-
+        error: () => alert("error in creating project."),
+        success: ret => {
+            if(ret)
+                this.instanceOfRunning.addProjectBlock(ret);
+        }
+        // async: false
+    });
+    this.instanceOfRunning.createNewProjectPanel.close();
+    // if(ret.status === 200 && ret.responseText){
+    //
+    // } else {
+    //     alert("创建新项目失败！");
+    // }
     // this.instanceOfRunning.addProjectBlock();
 };

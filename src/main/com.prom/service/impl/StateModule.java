@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import service.IStateModule;
+import utils.StringsUtils;
 
 
 @Component
@@ -40,5 +41,14 @@ public class StateModule implements IStateModule{
         }
         Integer curUserId = curUser.getId();
         return curUserId == null ? -1 : curUserId;
+    }
+
+    @Override
+    public String getCurUserEmail() {
+        if (curUser == null) {
+            return "null";
+        }
+        String curUserEmail = curUser.getEmail();
+        return StringsUtils.INSTANCE.isNullOrEmpty(curUserEmail) ? "null" : curUserEmail;
     }
 }

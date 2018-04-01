@@ -44,4 +44,5 @@ public class UserController {
         stateModule.setCurUser(null);
         return new ModelAndView("redirect:/");
     }
+
 }

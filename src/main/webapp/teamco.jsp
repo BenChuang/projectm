@@ -42,7 +42,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12" id="board_area"></div>
+        <div class="col-xs-12" id="board_area" style="display: flex; flex-wrap: wrap"></div>
     </div>
 </div>
 

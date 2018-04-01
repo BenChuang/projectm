@@ -13,4 +13,6 @@ public interface IStateModule {
     String getCurUsername();
 
     int getCurUserId();
+
+    String getCurUserEmail();
 }

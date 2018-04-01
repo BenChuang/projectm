@@ -62,7 +62,7 @@ data class OpTask(
         @Column var taskOwner: Int? = null,
         @Column var taskName: String = "",
         @Column var taskIntro: String = "",
-        @Column @OneToOne(mappedBy = "id") var projectAndState: StateToProject? = null,
+        @Column var projectAndState: Int? = null,
         @Column var createTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
 ){
     constructor(): this(null)
@@ -93,7 +93,7 @@ data class StateToProject(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null,
         @Column var projectId: Int? = null,
         @Column var stateName: String = "",
-        @Column var preState: String = ""
+        @Column var preState: Int? = null
 
 ){
     constructor(): this(null)
@@ -105,11 +105,11 @@ data class StateToProject(
  * 参与人员类
  */
 @Entity
-@Embeddable
 @Table(name = "project_user")
 data class UserToProject(
-        @Id var projectId: Int? = null,
-        @Id var userId: Int? = null
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Int? = null,
+        @Column var projectId: Int? = null,
+        @Column var userId: Int? = null
 ){
     constructor(): this(null, null)
 }
