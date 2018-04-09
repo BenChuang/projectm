@@ -8,15 +8,109 @@ const Project = function (projectId, board) {
 };
 
 Project.prototype.init = function () {
-    let allStateString = commonUtil.runService("projectService", "findAllStateToProject", this.projectId);
-    let allStates = eval(allStateString);
-    if("Array" === allStates.constructor.name){
-        this.allStates = allStates;
-        for(let state of this.allStates){
-            this.createStateBlock(state);
+    commonUtil.runService("projectService", "findAllStateToProject", this.projectId, ret => {
+        let allStates = eval(ret);
+        if ("Array" === allStates.constructor.name) {
+            this.allStates = allStates;
+            for (let state of this.allStates) {
+                this.createStateBlock(state);
+
+            }
         }
-    }
+    });
+
+
+    //燃尽图
+    commonUtil.runService("projectService", "findAllTaskByProjectId", this.projectId, ret => {
+        let tasks = eval(ret);
+        let data = [];
+        let dateMapValue = new Map();
+        for (let task of tasks) {
+            let date = new Date(task.createTime);
+            let dateString = [date.getFullYear(), date.getMonth() + 1, date.getDate()].join("/");
+            if(dateMapValue.has(dateString)){
+                let pre = dateMapValue.get(dateString);
+                dateMapValue.set(dateString, pre + 1);
+            } else dateMapValue.set(dateString, 1);
+            if(task.priorityLevel === 4){
+                let date = new Date(task.finishedTime);
+                let dateString = [date.getFullYear(), date.getMonth() + 1, date.getDate()].join("/");
+                if(dateMapValue.has(dateString)){
+                    let pre = dateMapValue.get(dateString);
+                    dateMapValue.set(dateString, pre - 1);
+                } else dateMapValue.set(dateString, -1);
+            }
+        }
+        const dateLessThen = (x, y) => {
+            if(x !== undefined && y !== undefined) {
+                let splitX = x.split("/");
+                let splitY = y.split("/");
+                let yearX = parseInt(splitX[0]);
+                let yearY = parseInt(splitY[0]);
+                let monthX = parseInt(splitX[1]);
+                let monthY = parseInt(splitY[1]);
+                let dayX = parseInt(splitX[2]);
+                let dayY = parseInt(splitY[2]);
+                if (yearX < yearY)
+                    return true;
+                else if (yearX === yearY) {
+                    if (monthX < monthY)
+                        return true;
+                    else if (monthX === monthY) {
+                        return dayX < dayY;
+                    } else
+                        return false;
+                } else
+                    return false;
+            }
+        };
+        let y = 0;
+        for(let i = 0; dateMapValue.size; i++) {
+            let min;
+            dateMapValue.forEach(((value, key) => {
+                if(dateLessThen(key, min) || min === undefined) {
+                    min = key;
+                }
+            }));
+            if(min !== undefined) {
+                y += dateMapValue.get(min);
+                data.push([min, y]);
+                dateMapValue.delete(min);
+            }
+        }
+        let option = {
+            xAxis: {
+                type: 'time'
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: data,
+                type: 'line',
+                areaStyle: {}
+            }],
+            axisPointer: {
+                show: true,
+                type: 'line',
+                snap: true
+            }
+        };
+        let fireOffDiv = document.getElementById("fire_off");
+        if(fireOffDiv === null || fireOffDiv === undefined){
+            fireOffDiv = document.createElement("DIV");
+            fireOffDiv.id = "fire_off";
+            fireOffDiv.className = "col-xs-12";
+            fireOffDiv.style.height = "600px";
+            this.boardArea.parentNode.appendChild(fireOffDiv);
+        }
+        let myChart = echarts.init(fireOffDiv);
+        myChart.setOption(option);
+
+    });
 };
+
+
 
 
 Project.prototype.createStateBlock = function (state) {
@@ -40,10 +134,26 @@ Project.prototype.createStateBlock = function (state) {
     state.taskListArea = taskList;
     a.addEventListener("click", eventUtil.newEventHendleFun(false, this.newTaskBlock, this, state));
     this.boardArea.appendChild(stateBlock);
+
+    commonUtil.runService("projectService", "findAllTaskIdByStateId", state.stateId, ret => {
+        if(ret !== undefined && ret !== "null") {
+            let allTaskId = eval(ret);
+            for(let taskId of allTaskId){
+                commonUtil.runService("projectService", "findTaskStringById", taskId, ret => {
+                    if(ret !== undefined && ret !== "null") {
+                        let task = eval("(" + ret + ")");
+                        if(task.priorityLevel < 4)
+                            this.addTaskBlock(task, state);
+                    }
+                });
+            }
+        }
+    });
+
 };
 
 Project.prototype.newTaskBlock = function (state) {
-    taskListArea = state.taskListArea;
+    let taskListArea = state.taskListArea;
     let taskBlock = document.createElement("DIV");
     taskBlock.className = "task-block";
 
@@ -52,19 +162,21 @@ Project.prototype.newTaskBlock = function (state) {
     let taskTitleInput = document.createElement("INPUT");
     taskTitleInput.className = "title-input";
     taskTitleInput.placeholder = "任务标题";
+    let tickA = document.createElement("A");
+    tickA.style.margin = "auto";
     let tick = document.createElement("SPAN");
     tick.className = "glyphicon glyphicon-ok";
-    tick.style.margin = "auto";
-    tick.style.cursor = "hand";
-    tick.addEventListener("click", eventUtil.newEventHendleFun(false, this.newTask, this, taskBlock, state));
+    tickA.appendChild(tick);
+    tickA.addEventListener("click", eventUtil.newEventHendleFun(false, this.newTask, this, taskBlock, state));
+    let xA = document.createElement("A");
+    xA.style.margin = "auto auto auto 0";
     let x = document.createElement("SPAN");
     x.className = "glyphicon glyphicon-remove";
-    x.style.margin = "auto auto auto 0";
-    x.style.cursor = "hand";
-    x.addEventListener("click", () => taskListArea.removeChild(taskBlock));
+    xA.appendChild(x);
+    xA.addEventListener("click", () => taskListArea.removeChild(taskBlock));
     taskTitle.appendChild(taskTitleInput);
-    taskTitle.appendChild(tick);
-    taskTitle.appendChild(x);
+    taskTitle.appendChild(tickA);
+    taskTitle.appendChild(xA);
     taskBlock.appendChild(taskTitle);
 
     let taskDeadLine = document.createElement("DIV");
@@ -101,19 +213,18 @@ Project.prototype.newTaskBlock = function (state) {
 Project.prototype.newTask = function (taskBlock, state) {
     let title = taskBlock.taskTitleInput.value;
     let deadline = taskBlock.taskDeadLineInput.value;
-    let priorityLeval = taskBlock.priorityLevel;
+    let priorityLevel = taskBlock.priorityLevel;
     let ret = $.ajax({
         url: "/controller/newTask",
         data: {
             taskTitle: title,
             deadline: deadline,
-            priorityLeval: priorityLeval,
+            priorityLevel: priorityLevel,
             stateId: state.stateId
         },
         error: () => alert("error in creating task."),
         success: ret => {
             if(ret){
-                debugger
                 let task = eval("(" + ret + ")");
                 state.tasks = state.tasks || [];
                 state.tasks.push(task);
@@ -130,14 +241,14 @@ Project.prototype.newTask = function (taskBlock, state) {
                     '       </small></h5>' +
                     '   </div>' +
                     '</div>';
-                let forwardDiv = document.createElement("DIV");
-                forwardDiv.style = "display: flex;";
-                let forwardA = document.createElement("A");
-                forwardA.style = "margin: auto 0";
-                forwardA.innerHTML = '<span class="glyphicon glyphicon-remove"></span>';
-                forwardA.addEventListener("click", eventUtil.newEventHendleFun(false, this.removeTask, this))
-                forwardDiv.appendChild(forwardA);
-                taskBlock.appendChild(forwardDiv);
+                let removeDiv = document.createElement("DIV");
+                removeDiv.style = "display: flex;";
+                let removeA = document.createElement("A");
+                removeA.style = "margin: 2px 2px auto 2px";
+                removeA.innerHTML = '<span class="glyphicon glyphicon-remove"></span>';
+                removeA.addEventListener("click", eventUtil.newEventHendleFun(false, this.removeTask, this, task.id, taskBlock));
+                removeDiv.appendChild(removeA);
+                taskBlock.appendChild(removeDiv);
             }
         }
         // async: false
@@ -148,9 +259,47 @@ Project.prototype.newTask = function (taskBlock, state) {
 
 };
 
+Project.prototype.addTaskBlock = function (task, state) {
+    let taskListArea = state.taskListArea;
+    state.tasks = state.tasks || [];
+    state.tasks.push(task);
+    let taskTitle = task.taskTitle;
+    let deadline = task.deadline;
+    let priorityLevel = task.priorityLevel;
+    let stateId = state.id;
+    let taskBlock = document.createElement("DIV");
+    taskBlock.className = "task-block";
+    taskBlock.style.flexFlow = "row";
+    taskBlock.innerHTML =
+        '<div style="display: flex; flex-flow: column; margin: 0 auto 0 0;">' +
+        '   <h4 style="margin: 16px auto 4px 40px">' +
+        taskTitle +
+        '   </h4>' +
+        '   <div style="margin: auto">' +
+        '   </div>' +
+        '   <div style="margin: 4px auto 4px 40px">' +
+        '       <h5><small>Deadline: ' + deadline +  '&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span><a> 未分配</a>' +
+        '       </small></h5>' +
+        '   </div>' +
+        '</div>';
+    let offerA = taskBlock.getElementsByTagName("A");
+    debugger
+    let removeDiv = document.createElement("DIV");
+    removeDiv.style = "display: flex;";
+    let removeA = document.createElement("A");
+    removeA.style = "margin: 2px 2px auto 2px";
+    removeA.innerHTML = '<span class="glyphicon glyphicon-remove"></span>';
+    removeA.addEventListener("click", eventUtil.newEventHendleFun(false, this.removeTask, this, task.id, taskBlock));
+    removeDiv.appendChild(removeA);
+    taskBlock.appendChild(removeDiv);
+    taskListArea.appendChild(taskBlock);
+    this.changeTaskPriority(taskBlock, priorityLevel);
+};
 
-Project.prototype.removeTask = function () {
-    debugger;
+Project.prototype.removeTask = function (taskId, taskBlock) {
+    let sure = confirm("确定删除该任务？");
+    if(sure === true)
+        commonUtil.runService("projectService", "removeTask", taskId, () => taskBlock.parentNode.removeChild(taskBlock));
 };
 
 Project.prototype.changeTaskPriority = function (taskBlock, leval) {

@@ -10,13 +10,13 @@
 <nav class="navbar-default navbar-fixed-top" style="box-shadow: 0 3px 9px rgba(0,0,0,.5);">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a><h4 class="navbar-text" id="head">进行中的项目</h4>
+            <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a><h4 class="navbar-text" id="head">我的项目</h4>
             <ul class="dropdown-menu">
-                <li><a id="btn_running" class="btn-flow"><span class="glyphicon glyphicon-ok" aria-hidden="true"> 进行中的项目</span></a></li>
-                <li><a id="btn_completed" class="btn-flow"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"> 已完成的项目</span></a></li>
-                <li><a id="btn_timeflow" class="btn-flow"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"> 时间流</span></a></li>
+                <li><a id="btn_running" class="btn-flow"><span class="glyphicon glyphicon-ok" aria-hidden="true"> 我的项目</span></a></li>
+                <li><a id="btn_myTask" class="btn-flow"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"> 我的任务</span></a></li>
                 <li role="separator" class="divider"></li>
-                <li><a id="btn_bussiness" class="btn-function"><span class="glyphicon glyphicon-plus" aria-hidden="true"> 创建企业</span></a></li>
+                <li><a id="btn_myTimeflow" class="btn-flow"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"> 我的时间线</span></a></li>
+                <li><a id="btn_projectTimeflow" class="btn-flow"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"> 项目时间线</span></a></li>
             </ul>
         </div>
 
@@ -30,7 +30,6 @@
                         <li id="usernameTag" class="dropdown-header" style="padding: 6px 20px 0 16px"></li>
                         <li><a id="btn_self" class="btn-function">个人信息</a></li>
                         <li><a id="btn_notificationItems" class="btn-function">通知选项</a></li>
-                        <li><a id="btn_setting" class="btn-function">设定</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/controller/logout">注销</a></li>
                     </ul>
@@ -57,16 +56,17 @@
 <script src="/resource/js/commonUtil.js"></script>
 <script src="/resource/js/global.js"></script>
 <script src="/resource/js/eventUtil.js"></script>
+<script src="/resource/js/echarts.simple.min.js"></script>
 <script src="/resource/js/CreateNewProj.js"></script>
 <script src="/resource/js/FloatingPanel.js"></script>
 <script src="/resource/js/Project.js"></script>
-<script src="/resource/js/Bussiness.js"></script>
+<script src="/resource/js/MyTask.js"></script>
 <script src="/resource/js/Chats.js"></script>
-<script src="/resource/js/Completed.js"></script>
+<script src="/resource/js/MyTimeflow.js"></script>
 <script src="/resource/js/Notification.js"></script>
 <script src="/resource/js/NotificationItem.js"></script>
 <script src="/resource/js/Running.js"></script>
-<script src="/resource/js/Self.js"></script>
+<script src="/resource/js/ProjectTimeflow.js"></script>
 <script src="/resource/js/Setting.js"></script>
 <script src="/resource/js/Timeflow.js"></script>
 <script src="/resource/js/Board.js"></script>

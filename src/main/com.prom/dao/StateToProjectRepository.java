@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface StateToProjectRepository extends JpaRepository<StateToProject, Integer>{
 
     Optional<List<StateToProject>> findByProjectId(Integer projectId);
+
+    StateToProject findByPreState(Integer preStateId);
 }

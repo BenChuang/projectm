@@ -28,8 +28,9 @@ Teamco.prototype.doFunction = function (btn) {
 
 Teamco.prototype.changeBoard = function (btn) {
     if(this.currentBoard.controlBtn !== btn){
+        if(this.currentBoard.controlBtn)
+            this.currentBoard.controlBtn.childNodes[0].className = "glyphicon glyphicon-option-horizontal";
         this.currentBoard.initBoardFromBtn(btn);
-        this.currentBoard.controlBtn.childNodes[0].className = "glyphicon glyphicon-option-horizontal";
         this.head.textContent = this.currentBoard.boardName;
         this.currentBoard.controlBtn.childNodes[0].className = "glyphicon glyphicon-ok";
     }

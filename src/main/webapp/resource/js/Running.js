@@ -53,31 +53,33 @@ Running.prototype.addProjectBlocks = function(){
 };
 
 Running.prototype.addProjectBlock = function (projectId) {
-    let ret = commonUtil.runService("projectService", "findProjectStringById", [projectId]);
-    if(ret && ret !== "null"){
-        let project = eval("(" + ret + ")");
-        let a = document.createElement("A");
-        a.className = "project-a";
-        let buff = [];
-        buff.push('<div class="project-block" style="background-image: url(https://mailimg.teambition.com/logos/cover-demo.jpg); background-repeat: no-repeat; background-size: cover; background-position: 50%"); ">');
-        //项目标题字体大小岁字数改变
-        if(getByteLength(project.projectName) > 23)
-            buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: small; color: #ffffff; margin: auto;"><b>');
-        else if(getByteLength(project.projectName) > 20)
-            buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: medium; color: #ffffff; margin: auto;"><b>');
-        else if(getByteLength(project.projectName) > 16)
-            buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: large; color: #ffffff; margin: auto;"><b>');
-        else
-            buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: x-large; color: #ffffff; margin: auto;"><b>');
-        buff.push(project.projectName);
-        buff.push('    </b></h1></div>');
-        buff.push('    <div style="height: 75px"> <h5 style="text-shadow: 0 1px 1px rgba(0,0,0,.35); color: #ffffff; margin: 0 16px;">' + project.projectIntro + '</h5></div>');
-        buff.push('    <div style="height: 20px"> <h5 style="margin: 0 6px; text-align: right"><small>' + project.createTime.substring(0, 10) + '</small></h5></div>');
-        buff.push('</div>');
-        a.innerHTML = buff.join('');
-        a.addEventListener("click", eventUtil.newEventHendleFun(false, this.openProject, this, project.id, project.projectName));
-        this.boardArea.insertBefore(a, this.btnCreateNewProject);
-    }
+    let ret = commonUtil.runService("projectService", "findProjectStringById", [projectId], ret => {
+        if(ret && ret !== "null"){
+            let project = eval("(" + ret + ")");
+            let a = document.createElement("A");
+            a.className = "project-a";
+            let buff = [];
+            buff.push('<div class="project-block" style="background-image: url(https://mailimg.teambition.com/logos/cover-demo.jpg); background-repeat: no-repeat; background-size: cover; background-position: 50%"); ">');
+            //项目标题字体大小岁字数改变
+            if(getByteLength(project.projectName) > 23)
+                buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: small; color: #ffffff; margin: auto;"><b>');
+            else if(getByteLength(project.projectName) > 20)
+                buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: medium; color: #ffffff; margin: auto;"><b>');
+            else if(getByteLength(project.projectName) > 16)
+                buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: large; color: #ffffff; margin: auto;"><b>');
+            else
+                buff.push('    <div style="display: flex; text-shadow: 0 1px 1px rgba(0,0,0,.35); height: 45px"><h1 style="font-size: x-large; color: #ffffff; margin: auto;"><b>');
+            buff.push(project.projectName);
+            buff.push('    </b></h1></div>');
+            buff.push('    <div style="height: 75px"> <h5 style="text-shadow: 0 1px 1px rgba(0,0,0,.35); color: #ffffff; margin: 0 16px;">' + project.projectIntro + '</h5></div>');
+            buff.push('    <div style="height: 20px"> <h5 style="margin: 0 6px; text-align: right"><small>' + project.createTime.substring(0, 10) + '</small></h5></div>');
+            buff.push('</div>');
+            a.innerHTML = buff.join('');
+            a.addEventListener("click", eventUtil.newEventHendleFun(false, this.openProject, this, project.id, project.projectName));
+            this.boardArea.insertBefore(a, this.btnCreateNewProject);
+        }
+    });
+
 
 };
 
@@ -96,7 +98,7 @@ Running.prototype.openProject = function (projectId, projectName) {
     this.boardArea.innerHTML = "";
     this.boardArea.style.flexWrap = "";
     this.boardArea.style.display = "-webkit-box";
-    this.board.initBoardWithName("Project", projectName, [projectId, this.board]);
+    this.board.initBoardWithName("Project", [projectId, this.board]);
 };
 
 

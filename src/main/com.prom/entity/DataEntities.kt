@@ -63,10 +63,12 @@ data class OpTask(
         @Column var taskOwner: Int? = null,
         @Column var taskTitle: String = "",
         @Column var taskIntro: String = "",
-        @Column var projectAndState: Int? = null,
+        @Column var state: Int? = null,
         @Column var createTime: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
         @Column var deadline: String = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-        @Column var taskFor: Int? = null){
+        @Column var taskFor: Int? = null,
+        @Column var priorityLevel: Int = 0,
+        @Column var finishedTime: String? = null){
     constructor(): this(null)
 }
 

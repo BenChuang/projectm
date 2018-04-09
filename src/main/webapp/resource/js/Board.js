@@ -11,6 +11,10 @@ Board.prototype.clean = function () {
     this.boardArea.innerHTML = "";
     delete this.controlBtn;
     delete this.boardName;
+    let fireOffDiv = document.getElementById("fire_off");
+    if(fireOffDiv){
+        fireOffDiv.parentNode.removeChild(fireOffDiv);
+    }
 };
 
 Board.prototype.initBoardFromBtn = function (controlBtn) {
@@ -20,9 +24,8 @@ Board.prototype.initBoardFromBtn = function (controlBtn) {
     eval( "new " + commonUtil.buildBtnName(this.controlBtn) + "(this);" );
 };
 
-Board.prototype.initBoardWithName = function (className, boardName, params) {
+Board.prototype.initBoardWithName = function (className, params) {
     this.clean();
-    this.boardName = boardName;
     let paramsString = "";
     for(let key in params)
         paramsString += "params[" + key + "],";

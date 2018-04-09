@@ -7,7 +7,7 @@ public class MyWebApplicationInitializer extends AbstractAnnotationConfigDispatc
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{ "/controller/*", "/app/*"};
+        return new String[]{ "/controller/*"};
     }
 
 

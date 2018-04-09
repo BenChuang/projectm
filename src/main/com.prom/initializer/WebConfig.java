@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"dao"})
-@ComponentScan({"app", "controller", "service", "dao"})
+@ComponentScan({"controller", "service", "dao"})
 public class WebConfig implements WebMvcConfigurer{
 
     @Bean

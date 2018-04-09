@@ -70,7 +70,16 @@ const commonUtil = {
             else return pre;
         });
         if (callback)
-            $.ajax({url: "/controller/service", data: {key: key}, success: callback, error: () => alert("runService error")});
+            $.ajax({
+                url: "/controller/service",
+                data: {
+                    serviceName: serviceName,
+                    methodName: methodName,
+                    paramsString: paramsString
+                },
+                success: callback,
+                error: () => alert("runService error")
+            });
         else{
             let ajax = $.ajax({
                 url: "/controller/service",

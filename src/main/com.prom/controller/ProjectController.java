@@ -36,13 +36,15 @@ public class ProjectController {
 
 
     @RequestMapping(value = "newTask", produces = "text/plain; charset=utf-8")
-    public @ResponseBody String newTask(String taskTitle, String deadline, String priorityLeval, int stateId) {
+    public @ResponseBody String newTask(String taskTitle, String deadline, int priorityLevel, int stateId) {
         int curUserid = stateModule.getCurUserId();
         String curDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        OpTask task = new OpTask(null, curUserid, taskTitle, "", stateId, curDateTime, deadline, null);
-        task = projectService.addTadk(task);
+        OpTask task = new OpTask(null, curUserid, taskTitle, "", stateId, curDateTime, deadline, null, priorityLevel, null);
+        task = projectService.addTask(task);
         return JsonObject.mapFrom(task).toString();
     }
+
+
 }
 
 
