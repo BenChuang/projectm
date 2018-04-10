@@ -109,7 +109,7 @@ MyTask.prototype.addTaskBlock = function (taskListArea, task) {
             '   <div style="margin: auto">' +
             '   </div>' +
             '   <div style="margin: 4px auto 4px 40px">' +
-            '       <h5><small>Deadline: ' + deadline + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span><a> 未分配</a>' +
+            '       <h5><small>Deadline: ' + deadline +
             '       </small></h5>' +
             '   </div>' +
             '</div>';
@@ -133,7 +133,6 @@ MyTask.prototype.forwardTask = function (task) {
         this.addTaskBlock(task.state.nextState.taskList, task);
         task.state = task.state.nextState;
     });
-debugger;
 };
 
 MyTask.prototype.changeTaskPriority = function (taskBlock, leval) {

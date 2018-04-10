@@ -98,7 +98,9 @@ Running.prototype.openProject = function (projectId, projectName) {
     this.boardArea.innerHTML = "";
     this.boardArea.style.flexWrap = "";
     this.boardArea.style.display = "-webkit-box";
-    this.board.initBoardWithName("Project", [projectId, this.board]);
+    this.board.initBoardWithName("Project", projectName, [projectId, this.board]);
 };
+
+
 
 

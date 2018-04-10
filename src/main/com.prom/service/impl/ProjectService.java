@@ -169,6 +169,38 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
+    public String findAllUserByProjectId(String projectId) {
+        int realProjectId = Integer.parseInt(projectId);
+        Optional<List<UserToProject>> optionalUserToProjects = userToProjectRepository.findDistinctByProjectId(realProjectId);
+        List<User> allUser = new ArrayList<>();
+        if (optionalUserToProjects.isPresent()) {
+            List<UserToProject> allUserToProject = optionalUserToProjects.get();
+            for (UserToProject userToProject : allUserToProject) {
+                Integer userId = userToProject.getUserId();
+                if(userId != null){
+                    User user = userRepository.getOne(userId);
+                    user.setPassword("");
+                    allUser.add(user);
+                }
+            }
+        }
+        return new JsonArray(allUser).toString();
+    }
+
+    @Override
+    public void changeTaskFor(String userId, String taskId) {
+        int realUserId = Integer.parseInt(userId);
+        int realTaskId = Integer.parseInt(taskId);
+        Optional<OpTask> optionalOpTask = opTaskRepository.findById(realTaskId);
+        Optional<User> optionalUser = userRepository.findById(realUserId);
+        if (optionalOpTask.isPresent() && optionalUser.isPresent()) {
+            OpTask task = optionalOpTask.get();
+            task.setTaskFor(realUserId);
+            opTaskRepository.saveAndFlush(task);
+        }
+    }
+
+    @Override
     public OpTask addTask(OpTask task) {
         return opTaskRepository.save(task);
     }

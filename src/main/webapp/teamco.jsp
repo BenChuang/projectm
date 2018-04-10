@@ -56,7 +56,7 @@
 <script src="/resource/js/commonUtil.js"></script>
 <script src="/resource/js/global.js"></script>
 <script src="/resource/js/eventUtil.js"></script>
-<script src="/resource/js/echarts.simple.min.js"></script>
+<script src="/resource/js/echarts.min.js"></script>
 <script src="/resource/js/CreateNewProj.js"></script>
 <script src="/resource/js/FloatingPanel.js"></script>
 <script src="/resource/js/Project.js"></script>
@@ -67,8 +67,6 @@
 <script src="/resource/js/NotificationItem.js"></script>
 <script src="/resource/js/Running.js"></script>
 <script src="/resource/js/ProjectTimeflow.js"></script>
-<script src="/resource/js/Setting.js"></script>
-<script src="/resource/js/Timeflow.js"></script>
 <script src="/resource/js/Board.js"></script>
 <script src="/resource/js/Teamco.js"></script>
 

@@ -2,6 +2,12 @@ const Project = function (projectId, board) {
     this.board = board;
     this.boardArea = this.board.boardArea;
     this.projectId = projectId;
+    let retUsers = commonUtil.runService("projectService", "findAllUserByProjectId", this.projectId);
+    this.users = eval(retUsers);
+    this.idToName = new Map();
+    for(user of this.users) {
+        this.idToName.set(user.id, user.username);
+    }
     this.init();
 
 
@@ -241,6 +247,8 @@ Project.prototype.newTask = function (taskBlock, state) {
                     '       </small></h5>' +
                     '   </div>' +
                     '</div>';
+                let offerA = taskBlock.getElementsByTagName("A")[0];
+                offerA.addEventListener("click", eventUtil.newEventHendleFun(true, this.openOfferPanel, this, task));
                 let removeDiv = document.createElement("DIV");
                 removeDiv.style = "display: flex;";
                 let removeA = document.createElement("A");
@@ -278,12 +286,12 @@ Project.prototype.addTaskBlock = function (task, state) {
         '   <div style="margin: auto">' +
         '   </div>' +
         '   <div style="margin: 4px auto 4px 40px">' +
-        '       <h5><small>Deadline: ' + deadline +  '&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span><a> 未分配</a>' +
+        '       <h5><small>Deadline: ' + deadline +  '&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span><a> '+ (this.idToName.get(task.taskFor) || "未分配") +'</a>' +
         '       </small></h5>' +
         '   </div>' +
         '</div>';
-    let offerA = taskBlock.getElementsByTagName("A");
-    debugger
+    let offerA = taskBlock.getElementsByTagName("A")[0];
+    offerA.addEventListener("click", eventUtil.newEventHendleFun(true, this.openOfferPanel, this, task));
     let removeDiv = document.createElement("DIV");
     removeDiv.style = "display: flex;";
     let removeA = document.createElement("A");
@@ -294,6 +302,46 @@ Project.prototype.addTaskBlock = function (task, state) {
     taskBlock.appendChild(removeDiv);
     taskListArea.appendChild(taskBlock);
     this.changeTaskPriority(taskBlock, priorityLevel);
+};
+
+Project.prototype.openOfferPanel = function (task, ev) {
+    let a = ev.target;
+
+    if(task.offerPanel === undefined){
+        task.offerPanel = new FloatingPanel();
+        task.offerPanel.styleWindow(((project, task, tag) => {
+            let container = document.createElement("DIV");
+            container.style = "margin: 6px; display: flex; flex-wrap: wrap";
+            for(let user of project.users) {
+                let newTeammate = document.createElement("DIV");
+                newTeammate.className = "thumbnail";
+                newTeammate.style = 'width: 50px; height: 50px; margin: 2px; border-radius: 25px; display: inline-block; background-color: #ddd;';
+                let a = document.createElement("A");
+                let img = document.createElement("IMG");
+                img.src = "/resource/img/account.png";
+                img.title = user.username;
+                img.width = "40px";
+                img.height = "40px";
+                img.style = "width:40px; height:40px; border-radius:25px;";
+                a.appendChild(img);
+                a.addEventListener("click", () => {
+                    commonUtil.runService("projectService", "changeTaskFor", [user.id, task.id], () => {
+                        tag.textContent = " " + user.username;
+                        task.offerPanel.close();
+                    });
+                });
+                newTeammate.appendChild(a);
+                container.appendChild(newTeammate);
+            }
+            return {
+                container: container
+            };
+        })(this, task, a));
+        task.offerPanel.setTitle("分配给谁");
+        task.offerPanel.setWidthAndHeight("300px");
+    }
+
+    task.offerPanel.open();
 };
 
 Project.prototype.removeTask = function (taskId, taskBlock) {
@@ -322,3 +370,6 @@ Project.prototype.changeTaskPriority = function (taskBlock, leval) {
             break;
     }
 };
+
+
+

@@ -29,6 +29,10 @@ public interface IProjectService{
 
     void initTeammates(Project project, String[] teammatesEmail);
 
+    String findAllUserByProjectId(String projectId);
+
+    void changeTaskFor(String userId, String taskId);
+
     OpTask addTask(OpTask task);
 
     String forwardTask(String taskId);

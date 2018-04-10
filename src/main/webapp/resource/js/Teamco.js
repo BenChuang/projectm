@@ -1,6 +1,5 @@
 const Teamco = function () {
     this.username = commonUtil.getState("curUsername");
-    this.head = $("#head")[0];
     this.currentBoard = new Board();
     this.currentBoard.initBoardFromBtn($("#btn_running")[0]);
 
@@ -28,11 +27,7 @@ Teamco.prototype.doFunction = function (btn) {
 
 Teamco.prototype.changeBoard = function (btn) {
     if(this.currentBoard.controlBtn !== btn){
-        if(this.currentBoard.controlBtn)
-            this.currentBoard.controlBtn.childNodes[0].className = "glyphicon glyphicon-option-horizontal";
         this.currentBoard.initBoardFromBtn(btn);
-        this.head.textContent = this.currentBoard.boardName;
-        this.currentBoard.controlBtn.childNodes[0].className = "glyphicon glyphicon-ok";
     }
 };
 

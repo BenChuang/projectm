@@ -5,6 +5,7 @@ const FloatingPanel = function () {
     // this.title = frame.title || {};
 
     let outterBlock = document.createElement("DIV");
+    this.outterBlock = outterBlock;
     outterBlock.id = "outter_block";
     outterBlock.className = "outter-block-hidden";
     let backdrop = document.createElement("DIV");
@@ -12,6 +13,7 @@ const FloatingPanel = function () {
     backdrop.className = "backdrop-hidden";
     this.backdrop = backdrop;
     let floatingBlock = document.createElement("DIV");
+    this.floatingBlock = floatingBlock;
     floatingBlock.id = "floating_block";
     floatingBlock.className = "floating-block-hiiden";
     this.floatingBlock = floatingBlock;
@@ -60,6 +62,8 @@ FloatingPanel.prototype.close = function () {
     this.setPanelVisible(false);
 };
 
+
+
 FloatingPanel.prototype.setPanelVisible = function(state){
     if(state === true || state === undefined){
         this.outterBlock.className = "outter-block";
@@ -74,5 +78,14 @@ FloatingPanel.prototype.setPanelVisible = function(state){
 
 FloatingPanel.prototype.setTitle = function (title) {
     this.title.textContent = title;
+};
+
+FloatingPanel.prototype.setWidthAndHeight = function (width, height) {
+    if(width) {
+        this.floatingBlock.style.width = width;
+    }
+    if(height) {
+        this.floatingBlock.style.height = height;
+    }
 };
 

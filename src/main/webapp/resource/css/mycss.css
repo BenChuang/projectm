@@ -258,7 +258,7 @@ button {
     z-index: 1050;
     background-color: #ffffff;
     transform: none;
-    transition: all .2s ease-out;
+    transition: transform .2s ease-out;
 }
 
 

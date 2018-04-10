@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface UserToProjectRepository extends JpaRepository<UserToProject, Integer>{
     Optional<List<UserToProject>> findDistinctByUserId(int userId);
+
+    Optional<List<UserToProject>> findDistinctByProjectId(int projectId);
 }
